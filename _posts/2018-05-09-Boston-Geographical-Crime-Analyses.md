@@ -114,10 +114,12 @@ crime_multiple_lm <- lm(crime_norm ~ Median_income + Percent_White, data = crime
 tidy_crime_mult_lm <- tidy(crime_multiple_lm)
 tidy_crime_mult_lm
 ```
-           term      estimate    std.error  statistic      p.value
-1   (Intercept)  1.631369e-01 1.170969e-02 13.9317845 1.659674e-29
-2 Median_income -7.796539e-08 2.225944e-07 -0.3502576 7.266004e-01
-3 Percent_White -9.397176e-04 2.331348e-04 -4.0307913 8.535178e-05
+
+| term | estimate | std. error | statistic | p-value |
+|-------|--------|---------|---------|---------|
+| (Intercept) | 1.631369e-01 | 1.170969e-02 | 13.9317845 | 1.659674e-29 |
+| Median_income | -7.796539e-08 | 2.225944e-07 | -0.3502576 | 7.266004e-01 |
+| Percent_White | -9.397176e-04 | 2.331348e-04 | -4.0307913 | 8.535178e-05 |
 
 ### Limitations
 The above analyses should be interpreted in light of a few important limitations. 
