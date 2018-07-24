@@ -132,4 +132,3 @@ The above analyses should be interpreted in light of a few important limitations
 + Gould, Eric, Bruce Weinberg, and David Mustard. “Crime Rates and Local Labor Market Opportunities in the United States.” The Review of Economics and Statistics 84(1):45-61.
 + Levitt, Steven. 1999. “The Changing Relationship between Income and Crime Victimization.” Economic Policy Review 5(3):87-98.
 + Liska, Allen and Paul Bellair. 1995. “Violent-Crime Rates and Racial Composition: Convergence Over Time.” American Journal of Sociology 101(3): 578-610.
-
