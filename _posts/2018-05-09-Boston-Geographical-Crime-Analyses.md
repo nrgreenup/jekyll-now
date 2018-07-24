@@ -34,19 +34,10 @@ NOTE: The following report highlights the findings from my analyses of Boston cr
 To prepare for analysis, I began by cleaning the crime data. Because of computer hardware and software limitations, I reduced the number of cases by selecting 20 different types of criminal incidents, keeping only those cases that contained values for latitude and longitude.
 
 ```{r, message=F, warning=F, cache = T}
-## Load dplyr package
 library(dplyr)
-
-# Read in data
 crime <- read.csv("data-crime_incidents.csv")
-
-# Remove observations with missing information (N/A)
 crime <- na.omit(crime)
-
-# Remove observations with missing spatial information 
 crime_filtered <- filter(crime, crime$Lat > -1 & crime$Long < -1)
-
-# Specify crimes of interest for analysis
 crimes_interested <- c("Auto Theft", "Aggravated Assault", "Larceny From Motor Vehicle",
                        "Larceny", "Drug Violation", "Robbery",
                        "Simple Assault", "Residential Burglary",
@@ -54,14 +45,8 @@ crimes_interested <- c("Auto Theft", "Aggravated Assault", "Larceny From Motor V
                        "Offenses Against Child / Family", "Other Burglary", "Commercial Burglary",
                        "Criminal Harassment", "Explosives", "HUMAN TRAFFICKING", "Manslaughter",
                        "Burglary - No Property Taken", "Arson")
-
-# Keep only observations with crimes of interest
 crime_clean <- crime_filtered[crime_filtered$OFFENSE_CODE_GROUP %in% crimes_interested,]
-
-# Ensure that only the 20 crimes of interest are included
 unique(crime_clean$OFFENSE_CODE_GROUP)
-
-# Export data
 write.csv(crime_clean, "data-crime_incidents_cleaned.csv")
 ```
 
