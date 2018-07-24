@@ -68,12 +68,12 @@ write.csv(crime_clean, "data-crime_incidents_cleaned.csv")
 ### ArcGIS Analyses
 After cleaning the crime data, I [imported](http://desktop.arcgis.com/en/arcmap/10.3/map/working-with-layers/adding-x-y-coordinate-data-as-a-layer.htm) the XY point locations into ArcGIS. Using ArcGIS' [select by location tool](http://desktop.arcgis.com/en/arcmap/10.3/map/working-with-layers/using-select-by-location.htm), I then intersected the crime point data with the Census tract shapefiles, providing the number of criminal incidents in each census tract. Next, I joined in the population size, racial composition, and median income for each census tract. After normalizing the crime count data by population size to obtain crime rates (i.e. crimes per capita), I created 3 choropleth maps that depict the crime rates, racial composition, and median income of each census tract in Boston.
 
-![Boston Map]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Boston Map")
+![Boston Map]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Crime Rates, Racial Composition, and Income Distribution in Boston, MA")
 
 ### R Analyses
 A visual examination of the choropleth maps hints toward the conclusion that crime rates are negatively associated with both the percent of an area that is white (hereinafter, racial composition) and median income. To further examine this, I examine scatterplots of racial composition and median income as predictors of crime rates. I create these using `ggplot2` (below code is example):
 
-```{r, eval = F}
+```r
 library(ggplot2)
 
 cor(crime$crime_norm, crime$Percent_White)
@@ -87,10 +87,8 @@ print(crime_plot_race_unfiltered_xRACE)
 ggsave("plot-crime_unfiltered_xRACE.png" , width = 5, height = 5)
 ```
 
-```{r, echo = F}
-knitr::include_graphics("https://github.com/nrgreenup/boston-crime/blob/master/plot-crime_unfiltered_xRACE.png")
-knitr::include_graphics("https://github.com/nrgreenup/boston-crime/blob/master/plot-crime_unfiltered_xINCOME.png")
-```
+![Crime by Race Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Crime as a Function of Race in Boston, MA")
+![Crime by Income Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Crime as a Function of Income in Boston, MA")
 
 It is clear in both instances that the regression line is heavily influenced by a few outlying observations. For instance, Census Tract 9818 has the highest observed crime rate at nearly 2 crimes per capita. However, the area is largely non-residential (only 53 residents). Every resident is non-Hispanic white and the median income is just shy of $200,000. Thus, though for most of the data there appears to be a downward linear trend, outliers like this influence the linear trend line. To account for this, I next look at those observations where crimes per capita is less than 0.5. Once these outliers are accounted for, there appears to be a clear negative association between crime rates and both racial composition and median income.
 
