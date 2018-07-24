@@ -7,11 +7,14 @@ output:
   html_document: default
 ---
 
-## Contents
-_Introductory Information_   
-[Introduction](#introduction)   
-[Data Sources](#data-sources)   
+These analyses served as the basis for the final project I submitted for a graduate-level Geographic Information Systems (GIS) course at Indiana University. I was primarily interested in examining the spatial distribution of crime in Boston as well as the correlates of crime rates. Drawing on prior research, I began the project with the following hypotheses:
+   + The proportion of the population that is white is negatively associated with crime rates (Liska & Bellair 1995; Blau 
+     & Blau 1982; Braithwaite 1979)
+   + Median income is negatively associated with crime rates (Gould et al. 2002; Levitt 1999)
 
+NOTE: The following report highlights the findings from my analyses of Boston crime rates. To obtain the files used for these analyses, see the [GitHub repository home page](https://github.com/nrgreenup/boston-crime).
+
+## Contents
 _Data Cleaning and Analysis_   
 [Data Cleaning](#data-cleaning)   
 [ArcGIS Analyses](#arcgis-analyses)   
@@ -20,14 +23,6 @@ _Data Cleaning and Analysis_
 _Concluding Remarks and Information_   
 [Limitations](#limitations)   
 [References](#references)
-
-## Introduction
-These analyses served as the basis for the final project I submitted for a graduate-level Geographic Information Systems (GIS) course at Indiana University. I was primarily interested in examining the spatial distribution of crime in Boston as well as the correlates of crime rates. Drawing on prior research, I began the project with the following hypotheses:
-   + The proportion of the population that is white is negatively associated with crime rates (Liska & Bellair 1995; Blau 
-     & Blau 1982; Braithwaite 1979)
-   + Median income is negatively associated with crime rates (Gould et al. 2002; Levitt 1999)
-
-NOTE: The following report highlights the findings from my analyses of Boston crime rates. To obtain the files used for these analyses, see the [GitHub repository home page](https://github.com/nrgreenup/boston-crime).
 
 ## Analyses
 ### Data Cleaning
