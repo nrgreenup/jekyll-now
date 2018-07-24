@@ -97,7 +97,7 @@ It is clear in both instances that the regression line is heavily influenced by 
 
 I also examined a [3D scatterplot](https://plot.ly/~nrgreenup/3/#/), created using `plotly`, to assess both racial composition and median income as joint predictors of crime rates:
 
-```{R, eval = F}
+```r
 scatterplot_3d <- plot_ly(crime_filtered, x= ~Median_income , y = ~Percent_White, z = ~crime_norm,
                           color = "red") %>% 
   add_markers() %>%
@@ -109,11 +109,15 @@ scatterplot_3d
 
 Lastly, I estimated a multiple linear regression model. Once both covariates are included as predictors in the model, racial composition is the only significant predictor. Thus, while scatterplots indicate that both median income and racial composition have negative associations with crime rates, it appears that racial composition is the more important predictor of crime rates, both in terms of statistical significance and the magnitude of the coefficient.
 
-```{R, eval = F}
+```r
 crime_multiple_lm <- lm(crime_norm ~ Median_income + Percent_White, data = crime_filtered)
 tidy_crime_mult_lm <- tidy(crime_multiple_lm)
 tidy_crime_mult_lm
 ```
+           term      estimate    std.error  statistic      p.value
+1   (Intercept)  1.631369e-01 1.170969e-02 13.9317845 1.659674e-29
+2 Median_income -7.796539e-08 2.225944e-07 -0.3502576 7.266004e-01
+3 Percent_White -9.397176e-04 2.331348e-04 -4.0307913 8.535178e-05
 
 ### Limitations
 The above analyses should be interpreted in light of a few important limitations. 
