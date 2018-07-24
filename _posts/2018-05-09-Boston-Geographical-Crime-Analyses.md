@@ -4,13 +4,8 @@ title: "Boston Geographical Crime Analyses"
 author: "Nolan Greenup"
 date: "5/9/2018"
 output:
-  pdf_document: default
   html_document: default
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Contents
 _Introductory Information_   
