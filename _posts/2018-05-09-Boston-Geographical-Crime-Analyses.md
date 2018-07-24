@@ -87,12 +87,13 @@ print(crime_plot_race_unfiltered_xRACE)
 ggsave("plot-crime_unfiltered_xRACE.png" , width = 5, height = 5)
 ```
 
-![Crime by Race Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Crime as a Function of Race in Boston, MA")
-![Crime by Income Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Crime as a Function of Income in Boston, MA")
+![Crime by Race Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_unfiltered_xRACE.png "Crime as a Function of Race in Boston, MA")
+![Crime by Income Unfiltered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_unfiltered_xINCOME.png "Crime as a Function of Income in Boston, MA")
 
 It is clear in both instances that the regression line is heavily influenced by a few outlying observations. For instance, Census Tract 9818 has the highest observed crime rate at nearly 2 crimes per capita. However, the area is largely non-residential (only 53 residents). Every resident is non-Hispanic white and the median income is just shy of $200,000. Thus, though for most of the data there appears to be a downward linear trend, outliers like this influence the linear trend line. To account for this, I next look at those observations where crimes per capita is less than 0.5. Once these outliers are accounted for, there appears to be a clear negative association between crime rates and both racial composition and median income.
 
-<img src="https://github.com/nrgreenup/boston-crime/blob/master/plot-crime_filtered_xRACE.png" width="300"> <img src="https://github.com/nrgreenup/boston-crime/blob/master/plot-crime_filtered_xINCOME.png" width="300">
+![Crime by Race Filtered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_filtered_xRACE.png "Crime as a Function of Race in Boston, MA (Filtered to Remove Outliers)")
+![Crime by Income Filtered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_filtered_xINCOME.png "Crime as a Function of Income in Boston, MA (Filtered to Remove Outliers)")
 
 I also examined a [3D scatterplot](https://plot.ly/~nrgreenup/3/#/), created using `plotly`, to assess both racial composition and median income as joint predictors of crime rates:
 
