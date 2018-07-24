@@ -34,10 +34,19 @@ NOTE: The following report highlights the findings from my analyses of Boston cr
 To prepare for analysis, I began by cleaning the crime data. Because of computer hardware and software limitations, I reduced the number of cases by selecting 20 different types of criminal incidents, keeping only those cases that contained values for latitude and longitude.
 
 ```r
+## Load dplyr package
 library(dplyr)
+
+## Read in data
 crime <- read.csv("data-crime_incidents.csv")
+
+# Remove observations with missing information (N/A)
 crime <- na.omit(crime)
+
+# Remove observations with missing spatial information 
 crime_filtered <- filter(crime, crime$Lat > -1 & crime$Long < -1)
+
+# Specify crimes of interest for analysis
 crimes_interested <- c("Auto Theft", "Aggravated Assault", "Larceny From Motor Vehicle",
                        "Larceny", "Drug Violation", "Robbery",
                        "Simple Assault", "Residential Burglary",
@@ -45,17 +54,21 @@ crimes_interested <- c("Auto Theft", "Aggravated Assault", "Larceny From Motor V
                        "Offenses Against Child / Family", "Other Burglary", "Commercial Burglary",
                        "Criminal Harassment", "Explosives", "HUMAN TRAFFICKING", "Manslaughter",
                        "Burglary - No Property Taken", "Arson")
+
+# Keep only observations with crimes of interest
 crime_clean <- crime_filtered[crime_filtered$OFFENSE_CODE_GROUP %in% crimes_interested,]
+
+# Ensure that only the 20 crimes of interest are included
 unique(crime_clean$OFFENSE_CODE_GROUP)
+
+# Export data
 write.csv(crime_clean, "data-crime_incidents_cleaned.csv")
 ```
 
 ### ArcGIS Analyses
 After cleaning the crime data, I [imported](http://desktop.arcgis.com/en/arcmap/10.3/map/working-with-layers/adding-x-y-coordinate-data-as-a-layer.htm) the XY point locations into ArcGIS. Using ArcGIS' [select by location tool](http://desktop.arcgis.com/en/arcmap/10.3/map/working-with-layers/using-select-by-location.htm), I then intersected the crime point data with the Census tract shapefiles, providing the number of criminal incidents in each census tract. Next, I joined in the population size, racial composition, and median income for each census tract. After normalizing the crime count data by population size to obtain crime rates (i.e. crimes per capita), I created 3 choropleth maps that depict the crime rates, racial composition, and median income of each census tract in Boston.
 
-```{r, echo = F}
-knitr::include_graphics("https://github.com/nrgreenup/boston-crime/blob/master/map-crime_race_income.jpg")
-```
+![Boston Map]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/map-crime_race_income.jpg "Boston Map")
 
 ### R Analyses
 A visual examination of the choropleth maps hints toward the conclusion that crime rates are negatively associated with both the percent of an area that is white (hereinafter, racial composition) and median income. To further examine this, I examine scatterplots of racial composition and median income as predictors of crime rates. I create these using `ggplot2` (below code is example):
