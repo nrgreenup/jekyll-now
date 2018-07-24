@@ -34,7 +34,7 @@ NOTE: The following report highlights the findings from my analyses of Boston cr
 To prepare for analysis, I began by cleaning the crime data. Because of computer hardware and software limitations, I reduced the number of cases by selecting 20 different types of criminal incidents, keeping only those cases that contained values for latitude and longitude.
 
 ```{r, message=F, warning=F, cache = T}
-# Load dplyr package
+## Load dplyr package
 library(dplyr)
 
 # Read in data
