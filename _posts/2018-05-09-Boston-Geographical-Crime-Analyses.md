@@ -33,7 +33,7 @@ NOTE: The following report highlights the findings from my analyses of Boston cr
 ### Data Cleaning
 To prepare for analysis, I began by cleaning the crime data. Because of computer hardware and software limitations, I reduced the number of cases by selecting 20 different types of criminal incidents, keeping only those cases that contained values for latitude and longitude.
 
-```{r, message=F, warning=F, cache = T}
+``` {r}
 library(dplyr)
 crime <- read.csv("data-crime_incidents.csv")
 crime <- na.omit(crime)
