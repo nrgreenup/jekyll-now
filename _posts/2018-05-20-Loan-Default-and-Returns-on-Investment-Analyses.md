@@ -6,7 +6,7 @@ date: "20/5/2018"
 output:
   html_document: default
 ---
-In this report, I build logistic regression and random forest classification models to predict loan default. I also examine returns on investment as a function of a few key predictors. I find that the logistic regression model slightly outperforms the random forest model with respect to predictive ability. I conclude by discussing the strengths and weaknesses of the discussed models and highlight other pertinent variables that might be used to build a better predictive model. 
+In this post, I discuss the logistic regression and random forest classification models I built to predict loan default. I also examine returns on investment as a function of a few key predictors. I find that the logistic regression model slightly outperforms the random forest model with respect to predictive ability. I conclude by discussing the strengths and weaknesses of the discussed models and highlight other pertinent variables that might be used to build a better predictive model. 
 
 NOTE: The following report provides an overview of my analyses of loan defaults and ROI. To obtain the files used for analysis, see the [GitHub repository home page](https://github.com/nrgreenup/loan-default).
 
