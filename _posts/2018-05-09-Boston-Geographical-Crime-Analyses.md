@@ -90,7 +90,7 @@ It is clear in both instances that the regression line is heavily influenced by 
 ![Crime by Race Filtered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_filtered_xRACE.png "Crime as a Function of Race in Boston, MA (Filtered to Remove Outliers)")
 ![Crime by Income Filtered]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/plot-crime_filtered_xINCOME.png "Crime as a Function of Income in Boston, MA (Filtered to Remove Outliers)")
 
-I also examined a [3D scatterplot](https://plot.ly/~nrgreenup/3/#/), created using `plotly`, to assess both racial composition and median income as joint predictors of crime rates:
+I also examined a 3D scatterplot, created using `plotly`, to assess both racial composition and median income as joint predictors of crime rates. The scatterplot is interactive, so feel free to examine the plot from different angles!
 
 <div>
     <a href="https://plot.ly/~nrgreenup/3/" target="_blank" title="boston-crime_income_race_3d" style="display: block; text-align: center;"><img src="https://plot.ly/~nrgreenup/3.png" alt="boston-crime_income_race_3d" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
