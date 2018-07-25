@@ -65,7 +65,7 @@ I taught 2 semesters of an undergraduate research methods and statistics class, 
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <th class="tg-yw4l" colspan="3"> SQL (Stanford Online) </td>
+    <th class="tg-yw4l" colspan="3"> SQL (Stanford Online) </th>
   </tr>
   <tr>
     <td class="tg-yw4l"> Constraints and Triggers </td>
