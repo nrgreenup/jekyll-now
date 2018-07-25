@@ -72,7 +72,7 @@ status_dist_graph <- ggplot(status_dist, aes(x = status_bin, y = count)) +
                              scale_fill_discrete(name = "Loan Status", labels = c("Paid", "Default"))
 ```
 
-![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="150px" width="150px"}
+![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="600px" width="600px"}
 
 When first examining the data, there are a handful of variables for which a strong theoretical justification for their inclusion in models predicting loan default exists. For instance, one would expect loans with longer terms to be more likely to default because the amount of interest paid -- and thus total payments required to pay off the loan --increases as loan terms increase. Similarly, we would expect that as installment amount (the month-to-month payments required for the loan) increases, the likelihood of default would increase as well. Lastly, we would expect a borrower's grade or subgrade -- which are measures of creditworthiness -- to be a strong predictor of loan status.  Similar to the previous graph, using the `group_by` and `summarise` commands from the `dplyr` package and `ggplot2`, I examine each of these potential predictors in turn.
 
@@ -83,8 +83,8 @@ As predicted, we see that loan term has a strong impact on the likelihood of def
 
 As expected, borrower grade seems to have a large influence on the likelihood of default. Borrower's graded "A" (those with the most superior creditworthiness) default at the lowest rate and those graded "G" (those with the worst creditworthiness) are the most likely to default. Default rate rises in a roughly linear fashion as you move from "A" to "G". A similar trend is apparent when looking at borrower sub-grade, which is a more fine-tuned measure of creditworthiness. The least likely sub-grade to default is "A1", with default rate increasing as borrower creditworthiness gets worse. However, there is a bit of fluctuation evident; for instance, "G4" has a higher default rate than "G5". That said, both of these exploratory graphs indicate the importance of borrower creditworthiness as a predictor of loan default. 
 
-![Loan Status by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_grade.png "Loan Status by Borrower Grade")
-![Loan Status by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_subgrade.png "Loan Status by Borrower Sub-Grade")
+![Loan Status by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_grade.png "Loan Status by Borrower Grade"){: height="600px" width="600px"}
+![Loan Status by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_subgrade.png "Loan Status by Borrower Sub-Grade"){: height="600px" width="600px"}
 
 ### Data Cleaning
 Based on these exploratory analyses, I elect to keep these variables, in addition to others that also have strong a priori reasons for being included in my models. Of note, these other variables include debt to income ratio, revolving balance utilization rate, annual income, bankruptcies, and tax liens.
