@@ -92,6 +92,12 @@ It is clear in both instances that the regression line is heavily influenced by 
 
 I also examined a [3D scatterplot](https://plot.ly/~nrgreenup/3/#/), created using `plotly`, to assess both racial composition and median income as joint predictors of crime rates:
 
+<div>
+    <a href="https://plot.ly/~nrgreenup/3/" target="_blank" title="boston-crime_income_race_3d" style="display: block; text-align: center;"><img src="https://plot.ly/~nrgreenup/3.png" alt="boston-crime_income_race_3d" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="nrgreenup:3" src="https://plot.ly/embed.js" async></script>
+</div>
+
+
 ```r
 scatterplot_3d <- plot_ly(crime_filtered, x= ~Median_income , y = ~Percent_White, z = ~crime_norm,
                           color = "red") %>% 
