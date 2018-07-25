@@ -72,19 +72,19 @@ status_dist_graph <- ggplot(status_dist, aes(x = status_bin, y = count)) +
                              scale_fill_discrete(name = "Loan Status", labels = c("Paid", "Default"))
 ```
 
-![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="600px" width="600px"}
+![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="400px" width="400px"}
 
 When first examining the data, there are a handful of variables for which a strong theoretical justification for their inclusion in models predicting loan default exists. For instance, one would expect loans with longer terms to be more likely to default because the amount of interest paid -- and thus total payments required to pay off the loan --increases as loan terms increase. Similarly, we would expect that as installment amount (the month-to-month payments required for the loan) increases, the likelihood of default would increase as well. Lastly, we would expect a borrower's grade or subgrade -- which are measures of creditworthiness -- to be a strong predictor of loan status.  Similar to the previous graph, using the `group_by` and `summarise` commands from the `dplyr` package and `ggplot2`, I examine each of these potential predictors in turn.
 
 As predicted, we see that loan term has a strong impact on the likelihood of default; roughly 41% of 60-month loans default, whereas only about 23% of 36-month loans do. Looking at the graph depicting loan default as a function of installment amount, we some variation. For the lowest 6 installment ranges, default rates range from roughly 23% to 32%. That said, the default rate for the highest installment range is about 57%. It should be noted that alternative specifications for the number of income ranges lead to a similar conclusion.
 
-![Loan Status by Term Length]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_term.png "Loan Status by Term Length")
-![Loan Status by Installment Amount]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_installment.png "Loan Status by Installment Amount")
+![Loan Status by Term Length]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_term.png "Loan Status by Term Length"){: height="400px" width="400px"}
+![Loan Status by Installment Amount]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_installment.png "Loan Status by Installment Amount"){: height="400px" width="400px"}
 
 As expected, borrower grade seems to have a large influence on the likelihood of default. Borrower's graded "A" (those with the most superior creditworthiness) default at the lowest rate and those graded "G" (those with the worst creditworthiness) are the most likely to default. Default rate rises in a roughly linear fashion as you move from "A" to "G". A similar trend is apparent when looking at borrower sub-grade, which is a more fine-tuned measure of creditworthiness. The least likely sub-grade to default is "A1", with default rate increasing as borrower creditworthiness gets worse. However, there is a bit of fluctuation evident; for instance, "G4" has a higher default rate than "G5". That said, both of these exploratory graphs indicate the importance of borrower creditworthiness as a predictor of loan default. 
 
-![Loan Status by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_grade.png "Loan Status by Borrower Grade"){: height="600px" width="600px"}
-![Loan Status by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_subgrade.png "Loan Status by Borrower Sub-Grade"){: height="600px" width="600px"}
+![Loan Status by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_grade.png "Loan Status by Borrower Grade"){: height="400px" width="400px"}
+![Loan Status by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-status_by_subgrade.png "Loan Status by Borrower Sub-Grade"){: height="400px" width="400px"}
 
 ### Data Cleaning
 Based on these exploratory analyses, I elect to keep these variables, in addition to others that also have strong a priori reasons for being included in my models. Of note, these other variables include debt to income ratio, revolving balance utilization rate, annual income, bankruptcies, and tax liens.
@@ -246,7 +246,7 @@ dev.off()
 auc(ROC4)
 Area under the curve: 0.7208
 ```
-![Model 4 ROC]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-ROC_model4.png "Model 4 Receiving Operator Characteristic (ROC) Curve")
+![Model 4 ROC]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-ROC_model4.png "Model 4 Receiving Operator Characteristic (ROC) Curve"){: height="400px" width="400px"}
 
 Though M4 is the best performing model considered to this point, it does a poor job of predicting loan default. The model does a great job of accurately predicting loans that are fully paid off; about 94% of loans that are fully paid are predicted to be paid by the model. However, only about 21% of loans that are actually defaulted are predicted to be defaulted by the model. Thus, I also examine the logistic regression classifier using different cut-points for predicting loan default. For instance, classifying all loan applications with a default probability of at least 0.25 as "default" loans leads to a lower overall accuracy rate, but significantly increases the ability of the model to accurately predict loan default. Which cut-point to use should be determined by the lending organization's goals. If the lender wants to avoid high risk loans as much as possible, a lower threshold for predicting default should be used. While this would decrease the model's overall accuracy and increase the proportion of desirable loans improperly classified as defaults, it would much better allow the lender to avoid providing loans that would eventually default. For instance, using 0.25 as the threshold, the model accurately predicts 72% of defaulted loans as such -- much higher than the 21% predicted using 0.50 as the threshold.
 
@@ -377,19 +377,19 @@ head(impRF2, n = 10)
 ### Return on Investment
 One of the fundamental considerations a bank must consider when deciding whether to approve a loan is whether the loan will provide a solid return on investment (ROI). The last set of analyses I perform for this project considers ROI as a function of a handful of key explanatory variables. First, I consider the distribution of ROI. It exhibits strong negative skew. Because the mean ROI will be heavily influenced by influential low-end outliers (i.e. those with a ROI near -100%), I also examine median ROI. 
 
-![ROI Kernel Density Plot]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-ROI_density.png "ROI Kernel Density Plot")
+![ROI Kernel Density Plot]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-ROI_density.png "ROI Kernel Density Plot"){: height="400px" width="400px"}
 
 When looking at ROI by borrower grade, only borrower grade "A" has a mean ROI that is positive. This is unsurprising for two reasons. First, because means are affected significantly by outliers, the numerous low-end values for the lower borrower grades (e.g. "F" and "G") bring down the mean ROI for those groups significantly. Second, because the data doesn't look at loans that are "current", the mean ROI shown here is going to be lower than it perhaps actually is. Many loans that are "current" will eventually become "fully paid", which would increase mean ROI. 
 
 However, median income shows a positive ROI for borrower grades "A" to "E". When looking at mean and median ROI in tandem, it is clear that a financial institution is most likely to see a positive ROI when the borrower has a higher grade. This is wholly unsurprising.
 
-![Mean ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_grade.png "Mean ROI by Borrower Grade")
-![Median ROI by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-medianROI_by_grade.png "Median ROI by Borrower Grade")
+![Mean ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_grade.png "Mean ROI by Borrower Grade"){: height="400px" width="400px"}
+![Median ROI by Borrower Sub-Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-medianROI_by_grade.png "Median ROI by Borrower Grade"){: height="400px" width="400px"}
 
 When looking at loan term, we see that mean ROI is negative for both 36 and 60 month loans, whereas median ROI is positive for both loan terms. Perhaps more importantly, both mean and median ROI is higher for 36 month loans. This suggests that, all else equal, a financial institution can be more confident in a strong ROI on shorter-term loans.
 
-![Mean ROI by Loan Term]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_term.png "Mean ROI by Loan Term")
-![Median ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-medianROI_by_term.png "Mean ROI by Loan Term")
+![Mean ROI by Loan Term]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_term.png "Mean ROI by Loan Term"){: height="400px" width="400px"}
+![Median ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-medianROI_by_term.png "Mean ROI by Loan Term"){: height="400px" width="400px"}
 
 ## Concluding Remarks and Information
 ### Summary of Findings
