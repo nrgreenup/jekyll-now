@@ -237,7 +237,7 @@ Prediction     0     1
 
 Examining the ROC curve, it is clear that M4 performs relatively well, but nonetheless misclassifies many loans. 
 
-```{r}
+```r
 ROC4 <- roc(test$status_bin, model4_test_prob)
 png("graph-ROC_model4")
 plot(ROC4, col = "red", main = " Model 4 ROC Curve")
