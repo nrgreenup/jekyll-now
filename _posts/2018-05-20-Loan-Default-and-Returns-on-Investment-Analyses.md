@@ -347,7 +347,7 @@ $acc
 [1] 0.7307463 0.7298507 0.7272239 0.7269254 0.7269851
 ```
 
-![Random Forest Accuracy]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-RF_accuracy.png "Accuracy of Random Forest Models by mtry Parameter Specification")
+![Random Forest Accuracy]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-RF_accuracy.png "Accuracy of Random Forest Models by mtry Parameter Specification"){: height="400px" width="400px"}
 
 Looking at the random forest model with the preferred specification, we can examine the variables with the highest importance. The most important variables include the total current debt balance of the borrower, borrower grade, and revolving credit balance. Interestingly, the random forest model shows that borrower annual income is one of the most important predictor variables; though income was significant in the logistic regression models, the magnitude of the coefficient was quite small.
 
