@@ -69,10 +69,11 @@ I taught 2 semesters of an undergraduate research methods and statistics class, 
   </tr>
   <tr>
     <td class="tg-yw4l"> Constraints and Triggers </td>
-     <td class="tg-yw4l"> Indexes and Transactions </td>
+    <td class="tg-yw4l"> Indexes and Transactions </td>
     <td class="tg-yw4l"> SQL </td>
   </tr>
 </table>
+
 
 ### About This Website
 This website was created using Barry Clark's Jekyll implementation [Jekyll Now](https://github.com/barryclark/jekyll-now). 
