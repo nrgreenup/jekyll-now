@@ -115,7 +115,7 @@ test <- loan_clean[- train_indices,]
 
 I specify Model 1 (M1) using the training data where loan status is a function of the 12 covariates that I initially thought would be the most pertinent. With the exception of the dummy variable indicating whether the loan applicant had a prior bankruptcy, all covariates are statistically significant. However, it should be noted that the magnitude of some of the coefficients is quite small. Additionally, with the exception of "loan amount", the direction (+/-) of all coefficients is as one would expect. I suspect that the peculiar negative coefficient on loan amount is because of multicollinearity. Checking variance inflation factors (VIF) confirms this; loan amount is understandably highly correlated with installment amount and it appears (to a lesser degree) loan term.
 
-```{r}
+```r
 glm(formula = status_bin ~ term + sub_grade_num + emp_length_num + 
     loan_amnt + installment + annual_inc + revol_util + total_acc + 
     dti + delinq_2yrs + bankruptcy_bin + taxliens_bin, family = "binomial", 
@@ -389,7 +389,7 @@ However, median income shows a positive ROI for borrower grades "A" to "E". When
 When looking at loan term, we see that mean ROI is negative for both 36 and 60 month loans, whereas median ROI is positive for both loan terms. Perhaps more importantly, both mean and median ROI is higher for 36 month loans. This suggests that, all else equal, a financial institution can be more confident in a strong ROI on shorter-term loans.
 
 ![Mean ROI by Loan Term]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_term.png "Mean ROI by Loan Term")
-![Median ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-meanROI_by_term.png "Mean ROI by Loan Term")
+![Median ROI by Borrower Grade]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-medianROI_by_term.png "Mean ROI by Loan Term")
 
 ## Concluding Remarks and Information
 ### Summary of Findings
