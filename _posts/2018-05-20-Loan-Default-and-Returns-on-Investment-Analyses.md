@@ -72,7 +72,7 @@ status_dist_graph <- ggplot(status_dist, aes(x = status_bin, y = count)) +
                              scale_fill_discrete(name = "Loan Status", labels = c("Paid", "Default"))
 ```
 
-![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="36px" width="36px"}
+![Loan Status Distribution]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/loan-default/graph-loan_status_distribution.png "Loan Status Distribution"){: height="150px" width="150px"}
 
 When first examining the data, there are a handful of variables for which a strong theoretical justification for their inclusion in models predicting loan default exists. For instance, one would expect loans with longer terms to be more likely to default because the amount of interest paid -- and thus total payments required to pay off the loan --increases as loan terms increase. Similarly, we would expect that as installment amount (the month-to-month payments required for the loan) increases, the likelihood of default would increase as well. Lastly, we would expect a borrower's grade or subgrade -- which are measures of creditworthiness -- to be a strong predictor of loan status.  Similar to the previous graph, using the `group_by` and `summarise` commands from the `dplyr` package and `ggplot2`, I examine each of these potential predictors in turn.
 
