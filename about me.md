@@ -9,7 +9,7 @@ I am a PhD student in the Department of Sociology at Indiana University and an a
 ### Statistical and Methodological Training and Experience
 My graduate-level statistical and methodological coursework includes:
 
-| linear regression | categorical data analysis (logistic/probit, poisson/negative binomial models) | 
+| linear regression | categorical data analysis (logistic/probit, poisson/negative binomial models) 
 | longitudinal/panel analysis | time series analysis | Bayesian statistics | 
 | network analysis  | geographic information systems| research and survey design |
 
