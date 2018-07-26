@@ -110,7 +110,7 @@ print(plot_seasonality)
 
 Lastly, the slow decay evident in the ACF indicates the likely presence of a unit root. Augmented Dickey-Fuller and KPSS tests confirm this. Both the ACF and PACF also indicate clear seasonality, in line with prior findings.
 
-![Retail Sales ACF/PACF]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot_sales-ACF2.png "Retail Sales ACF/PACF"){: height="400px" width="400px"}
+![Retail Sales ACF/PACF]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-sales_ACF2.png "Retail Sales ACF/PACF"){: height="400px" width="400px"}
 
 ## Naive Forecast
 I begin with the most simplistic forecasting method for these data: the naive forecast. Where Y<sub>t</sub> is the final observation in the training data, the naive method forecasts all future values of the series to be Y<sub>t</sub>. Because this method simply sets all forecast values to the value of the last observed point in the series, it should miss out on the observed trend and seasonality in the retail sales series. 
@@ -137,7 +137,7 @@ accuracy(naiveSALES, test[,"SALES"])
 ```
 As seen in the forecast plot below, the naive forecast expectedly performs poorly, as it misses the seasonal variation and trend in the series (Note: For all forecast plots, the black line is the forecast and the red line is the observed test data). To quantify this inaccuracy, I examine the forecast's mean absolute error (MAE), which (as the name suggests) takes the mean of the absolute value of the forecast errors. MAE is a common method for evaluating forecast accuracy because of its interpretability, but it should be noted that other valuable metrics also exist (such as RMSE, root mean squared error). The MAE for the naive forecast is 32.29. On average, the forecast errs from the observed test data by $32.29B. This is not ideal; a better forecasting model needs to account for the peculiarities of the time series that the naive method fails to account for. 
 
-![Naive Forecast Plot]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot-naive_forecast.png "Naive Forecast Plot"){: height="400px" width="400px"}
+![Naive Forecast Plot]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-naive_forecast.png "Naive Forecast Plot"){: height="400px" width="400px"}
 
 Lastly, it is important to note that the traditional training/test split is not the only way to evaluate forecasting methods. Time-series cross-validation (TSCV) also provides a robust method for evaluating a foreast. TSCV uses multiple one-observation test sets, where forecast accuracy is computed by averaging over the test sets. For instance, we would use:
  - Observation 1 to forecast Observation 2
@@ -178,7 +178,7 @@ accuracy(hwSALES, test[,"SALES"])
 
 Based solely on the forecast plot, it is immediately apparent that the HW forecast significantly outperforms the naive forecast. It clearly accounts for both the trend, and perhaps more importantly seasonality, in the series. Indeed, the MAE is much better for this forecast as well. Whereas the MAE was $32.29B for the naive forecast, it is only $7.45B for the HW model. On average, the HW forecast errs from the observed test data by just $7.45B. Seeing as the scale of the data is in the $300B-$500B range, a MAE of roughly $7B is pretty good. Still, I will see if I can produce other forecasts that improve upon the HW model.
 
-![HW Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot-hw_forecast.png "Holt-Winters Forecast"){: height="400px" width="400px"}
+![HW Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-hw_forecast.png "Holt-Winters Forecast"){: height="400px" width="400px"}
 
 ## ARIMA Forecast
 I next use an ARIMA (ARIMA) forecast to see if I can improve upon the HW forecast. SARIMA models are notated SARIMA(p,d,q)(P,D,Q)m, where:   
@@ -216,11 +216,11 @@ accuracy(arimaFCAST, test[,"SALES"])
 
 The optimization algorithm selects an ARIMA(2,1,1)(1,1,2)12. Importantly, as seen in the residual diagnostic plots below, the residuals have a mean equal to zero and are at most slightly correlated (except for stronger correlation during the late 2000s recession). Thus, while the residuals are not perfectly white noise, they should suffice for the task at hand here. 
 
-![ARIMA Residuals]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot-arima_residuals.png "ARIMA Residuals"){: height="400px" width="400px"}
+![ARIMA Residuals]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-arima_residuals.png "ARIMA Residuals"){: height="400px" width="400px"}
 
 The ARIMA forecast performs spectacularly. While the MAE of $7B was low for the Holt-Winters forecast, it is even lower for the ARIMA forecast: $4.8B. Again, given that monthly retail sales range between $300B-$500B, a mean absolute error of under $5B indicates an incredibly strong forecast. I will attempt to improve upon this as well, but it is a very strong forecasting model as is.
 
-![ARIMA Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot-arima_forecast.png "ARIMA Forecast"){: height="400px" width="400px"}
+![ARIMA Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-arima_forecast.png "ARIMA Forecast"){: height="400px" width="400px"}
 
 I noted above that the residuals for the ARIMA model are not completely a white noise process. We could, of course, also implement a model that more fully satisfies this essential assumption. In order to do so, we must find a higher order model that more completely picks up the dynamics of the series. I implement a `for` loop across the non-seasonal and seasonal AR components (p and P) of the model and find the lowest order model that passes the Box-Ljung Q test. The null hypothesis for this test is that the residuals are white noise; thus, we are looking for a p-value above 0.05. The lowest order model that passes formal testing for white noise residuals is an ARIMA(8,1,1,3,1,2)[12]. 
 
@@ -252,12 +252,12 @@ accuracy(arimaFCASTBL, test[,"SALES"])
 
 The MAE for the ARIMA(8,1,1)(3,1,2)[12] forecast is $7.6B. Thus, the model is on par with the Holt-Winters forecast, but performs worse than the ARIMA(2,1,1,)(1,1,2)[12] forecast.   
 
-![ARIMA Fit to BL Test]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot_arima-forecastBLtest.png "Lowest Order ARIMA Model Passing Box-Ljung Test"){: height="400px" width="400px"}
+![ARIMA Fit to BL Test]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_arima-forecastBLtest.png "Lowest Order ARIMA Model Passing Box-Ljung Test"){: height="400px" width="400px"}
 
 ## Dynamic Regression Forecast
 To this point, all for the forecasts have used only the past characteristics of the retail series to predict future values. A dynamic regression model allows external information to be used in calculating forecasts. Here, I use the Consumer Price Index (CPI) as an exogenous regressor predicting retail sales. Thus, I examine whether including changes over time in prices provides valuable forecasting information. Looking at the CPI series, it is clear that it has an upward trend over time. 
 
-![CPI Series]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot_CPI-series.png "CPI Series"){: height="400px" width="400px"}
+![CPI Series]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_CPI-series.png "CPI Series"){: height="400px" width="400px"}
 
 In order to use CPI as an exogenous regressor for the retail sales forecast, I must fit an ARIMA model for CPI using the training data. I must then forecast the CPI series. In doing so, I have forecasted values of CPI that can be used in forecasting retail sales. The best fitting model for the CPI series is an ARIMA(0,1,3)(0,0,1)[12]. I do so as follows:
 ```r
@@ -274,7 +274,7 @@ xregFCAST <- xregSALES %>% forecast(h = 60, xreg = cpiFCAST$mean)
 
 The best fitting model for the retail sales series, including CPI as an exogenous regressor, is an ARIMA(2,1,1)(0,1,2)[12]. Looking at the forecast visualization, the model seems to perform quite well. The forecast performs exceptionally well for 2013 but slowly begins to falter as the forecast range increases. The MAE for this forecast is $6.2B. Thus, while it is not quite as strong as the best performing ARIMA that excludes exogenous regressors, it does outperform the Holt-Winters forecast. All in all, the dynamic regression forecast is quite accurate. 
 
-![Dynamic Regression Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot_xreg-forecast.png "Dynamic Regression Forecast"){: height="400px" width="400px"}
+![Dynamic Regression Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_xreg-forecast.png "Dynamic Regression Forecast"){: height="400px" width="400px"}
 
 ## Summary of Findings
 I evaluate four forecasting methods for retail sales. Preliminary analyses indicate that the retail sales time series has a clear upward trend and seasonality, both of which must be accounted for in forecasting. The mean absolute errors for the four forecasts are as follows: 
