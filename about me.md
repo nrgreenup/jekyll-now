@@ -72,11 +72,12 @@ I taught 2 semesters of an undergraduate research methods and statistics class, 
     <td class="tg-yw4l"> Indexes and Transactions </td>
     <td class="tg-yw4l"> SQL </td>
   </tr>
+  <tr>
+    <td class="tg-yw4l"> Views and Authorization </td>
+  </tr> 
 </table>
 
 
 ### About This Website
 This website was created using Barry Clark's Jekyll implementation [Jekyll Now](https://github.com/barryclark/jekyll-now). 
 
-### Contact me
-[email@domain.com](mailto:email@domain.com)
