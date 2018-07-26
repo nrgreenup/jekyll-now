@@ -252,12 +252,12 @@ accuracy(arimaFCASTBL, test[,"SALES"])
 
 The MAE for the ARIMA(8,1,1)(3,1,2)[12] forecast is $7.6B. Thus, the model is on par with the Holt-Winters forecast, but performs worse than the ARIMA(2,1,1,)(1,1,2)[12] forecast.   
 
-![ARIMA Fit to BL Test]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_arima-forecastBLtest.png "Lowest Order ARIMA Model Passing Box-Ljung Test"){: height="400px" width="400px"}
+![ARIMA Fit to BL Test]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-arima_forecastBLtest.png "Lowest Order ARIMA Model Passing Box-Ljung Test"){: height="400px" width="400px"}
 
 ## Dynamic Regression Forecast
 To this point, all for the forecasts have used only the past characteristics of the retail series to predict future values. A dynamic regression model allows external information to be used in calculating forecasts. Here, I use the Consumer Price Index (CPI) as an exogenous regressor predicting retail sales. Thus, I examine whether including changes over time in prices provides valuable forecasting information. Looking at the CPI series, it is clear that it has an upward trend over time. 
 
-![CPI Series]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_CPI-series.png "CPI Series"){: height="400px" width="400px"}
+![CPI Series]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-CPI_series.png "CPI Series"){: height="400px" width="400px"}
 
 In order to use CPI as an exogenous regressor for the retail sales forecast, I must fit an ARIMA model for CPI using the training data. I must then forecast the CPI series. In doing so, I have forecasted values of CPI that can be used in forecasting retail sales. The best fitting model for the CPI series is an ARIMA(0,1,3)(0,0,1)[12]. I do so as follows:
 ```r
@@ -274,7 +274,7 @@ xregFCAST <- xregSALES %>% forecast(h = 60, xreg = cpiFCAST$mean)
 
 The best fitting model for the retail sales series, including CPI as an exogenous regressor, is an ARIMA(2,1,1)(0,1,2)[12]. Looking at the forecast visualization, the model seems to perform quite well. The forecast performs exceptionally well for 2013 but slowly begins to falter as the forecast range increases. The MAE for this forecast is $6.2B. Thus, while it is not quite as strong as the best performing ARIMA that excludes exogenous regressors, it does outperform the Holt-Winters forecast. All in all, the dynamic regression forecast is quite accurate. 
 
-![Dynamic Regression Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_xreg-forecast.png "Dynamic Regression Forecast"){: height="400px" width="400px"}
+![Dynamic Regression Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-xreg_forecast.png "Dynamic Regression Forecast"){: height="400px" width="400px"}
 
 ## Summary of Findings
 I evaluate four forecasting methods for retail sales. Preliminary analyses indicate that the retail sales time series has a clear upward trend and seasonality, both of which must be accounted for in forecasting. The mean absolute errors for the four forecasts are as follows: 
