@@ -106,7 +106,7 @@ plot_seasonality <- ggseasonplot(ts[,"SALES"], col = seasonplot_colors) +
 print(plot_seasonality)
 ```
 
-![Retail Sales Seasonality]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/sales-forecast/plot_sales-seasonality.png "Retail Sales Seasonality"){: height="400px" width="400px"}
+![Retail Sales Seasonality]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot_sales-seasonality.png "Retail Sales Seasonality"){: height="400px" width="400px"}
 
 Lastly, the slow decay evident in the ACF indicates the likely presence of a unit root. Augmented Dickey-Fuller and KPSS tests confirm this. Both the ACF and PACF also indicate clear seasonality, in line with prior findings.
 
