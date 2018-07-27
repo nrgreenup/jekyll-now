@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /about me/
+permalink: /about_me/
 ---
 
 I am a PhD student in the Department of Sociology at Indiana University and an aspiring data scientist. As a sociologist, most of my work has been focused on politics and public opinion. However, throughout my tenure at IU, I have devoted the lion's share of my time to developing skills as a quantitative analyst (see section below). I am passionate about using these statistical skills to tell stories with and provide actionable insights using data.  
