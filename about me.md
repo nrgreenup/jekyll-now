@@ -70,9 +70,10 @@ I taught 2 semesters of an undergraduate research methods and statistics class, 
   <tr>
     <td class="tg-yw4l"> Constraints and Triggers </td>
     <td class="tg-yw4l"> Indexes and Transactions </td>
-    <td class="tg-yw4l"> SQL </td>
+    <td class="tg-yw4l"> On-Line Analytical Processing </td>
   </tr>
   <tr>
+    <td class="tg-yw4l"> SQL </td>
     <td class="tg-yw4l"> Views and Authorization </td>
   </tr> 
 </table>
