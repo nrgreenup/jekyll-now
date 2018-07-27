@@ -4,32 +4,29 @@ title: About Me
 permalink: /about me/
 ---
 
-I am a PhD student in the Department of Sociology at Indiana University and an aspiring data scientist. As a sociologist, most of my work has been focused on politics and public opinion. However, throughout my tenure at IU, I have devoted the lion's share of my time to developing skills as a quantitative analyst (see section below). I am passionate about using these statistical skills I have developed throughout my graduate training to tell stories with and provide actionable insights using data.  
+I am a PhD student in the Department of Sociology at Indiana University and an aspiring data scientist. As a sociologist, most of my work has been focused on politics and public opinion. However, throughout my tenure at IU, I have devoted the lion's share of my time to developing skills as a quantitative analyst (see section below). I am passionate about using these statistical skills to tell stories with and provide actionable insights using data.  
 
 ### Statistical and Methodological Training and Experience
-#### Teaching
-I taught 2 semesters of an undergraduate research methods and statistics class, which covered survey design and sampling procedures, measures of central tendency and dispersion, standardization (e.g. z-scores), tabular and graphical displays of data using Microsoft Excel, statistical inference (e.g. confidence intervals and p-values), and a cursory introduction to linear regression. My syllabus can be found [here](https://iu.app.box.com/file/283732193861).
-
 #### Graduate Coursework
 <table class="tg">
   <tr>
-    <td> Linear regression </td>
-    <td> Categorical data analysis (logistic/probit, poisson/negative binomial models) </td>
-    <td> Time series analysis </td>
-  </tr>
     <td> Bayesian statistics </td>
-    <td> Network Analysis </td>
-    <td> Longitudinal/panel analysis </td>
-  <tr>
-    <td> Probability </td>
+    <td> Categorical data analysis (logistic/probit, poisson/negative binomial models) </td>
     <td> Geographic information systems </td>
+  </tr>
+    <td> Linear regression </td>
+    <td> Longitudinal/panel analysis </td>
+    <td> Network Analysis </td>   
+  <tr>
+    <td> Probability </td>    
     <td> Research and survey design </td>
+     <td> Time series analysis </td>
   </tr>
   <tr>
   </tr>
 </table>
 
-#### Online Courses 
+#### Online Coursework
 <table class="tg">
   <tr>
     <th class="tg-us36" colspan="3"> R (DataCamp) </th>
@@ -78,7 +75,8 @@ I taught 2 semesters of an undergraduate research methods and statistics class, 
   </tr> 
 </table>
 
+#### Teaching
+I taught 2 semesters of an undergraduate research methods and statistics class, which covered survey design and sampling procedures, measures of central tendency and dispersion, standardization (e.g. z-scores), tabular and graphical displays of data using Microsoft Excel, statistical inference (e.g. confidence intervals and p-values), and a cursory introduction to linear regression. My syllabus can be found [here](https://iu.app.box.com/file/283732193861).
 
 ### About This Website
 This website was created using Barry Clark's Jekyll implementation [Jekyll Now](https://github.com/barryclark/jekyll-now). 
-
