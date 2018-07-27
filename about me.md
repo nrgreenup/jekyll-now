@@ -26,51 +26,51 @@ I am a PhD student in the Department of Sociology at Indiana University and an a
 
 #### Online Coursework
 <table class="tg">
-<caption align="bottom"> Websites used: DC = DataCamp, STAN = Stanford Online Course </caption>
+<caption style="font-size: 8px; align="bottom"> Websites used: DC = DataCamp, STAN = Stanford Online Course </caption>
   <tr>
     <th class="tg-us36" colspan="3"> R </th>
   </tr>
   <tr>
     <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
-    <td class="tg-us36"> Cleaning Data <sup>DC</sup> </td>
-    <td class="tg-us36"> Data Manipulation with DPLYR <sup>DC</sup> </td>
+    <td class="tg-us36"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
+    <td class="tg-us36"> Data Manipulation with DPLYR<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
   </tr>
   <tr>
-    <td class="tg-us36"> ggplot2: Part 1 <sup>DC</sup></td>
-    <td class="tg-us36"> ggplot2: Part 2 <sup>DC</sup></td>
-    <td class="tg-us36"> Forecasting <sup>DC</sup></td>
+    <td class="tg-us36"> ggplot2: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-us36"> ggplot2: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Importing Data: Part 1 <sup>DC</sup></td>
-    <td class="tg-yw4l"> Importing Data: Part 2 <sup>DC</sup></td>
-    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies <sup>DC</sup></td>
+    <td class="tg-yw4l"> Importing Data: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Importing Data: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Intermediate R <sup>DC</sup></td>
-    <td class="tg-yw4l"> Intermediate R: Practice <sup>DC</sup></td>
-    <td class="tg-yw4l"> Introduction to R <sup>DC</sup></td>
+    <td class="tg-yw4l"> Intermediate R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Intermediate R: Practice<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Introduction to R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Introduction to Time Series <sup>DC</sup></td>
-    <td class="tg-yw4l"> Manipulating Time Series with xts and zoo <sup>DC</sup></td>
-    <td class="tg-yw4l"> Multiple and Logistic Regression <sup>DC</sup></td>
+    <td class="tg-yw4l"> Introduction to Time Series<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Manipulating Time Series with xts and zoo<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Multiple and Logistic Regression<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
    <tr>
-    <td class="tg-yw4l"> Supervised Learning: Classification <sup>DC</sup></td>
-    <td class="tg-yw4l"> Writing Functions <sup>DC</sup></td>
+    <td class="tg-yw4l"> Supervised Learning: Classification<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
     <th class="tg-yw4l" colspan="3"> SQL </th>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Constraints and Triggers <sup>STAN</sup></td>
-    <td class="tg-yw4l"> Indexes and Transactions <sup>STAN</sup></td>
-    <td class="tg-yw4l"> On-Line Analytical Processing <sup>STAN</sup></td>
+    <td class="tg-yw4l"> Constraints and Triggers<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> Indexes and Transactions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> On-Line Analytical Processing<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> SQL <sup>STAN</sup></td>
-    <td class="tg-yw4l"> Views and Authorization <sup>STAN</sup></td>
+    <td class="tg-yw4l"> SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> Views and Authorization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
   </tr> 
 </table>
 
