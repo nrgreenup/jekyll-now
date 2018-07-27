@@ -31,7 +31,7 @@ I am a PhD student in the Department of Sociology at Indiana University and an a
     <th class="tg-us36" colspan="3"> R </th>
   </tr>
   <tr>
-    <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 5px">DC</sup> </td>
+    <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 5px; line-height: 0; vertical-align: 3px">DC</sup> </td>
     <td class="tg-us36"> Cleaning Data <sup>DC</sup> </td>
     <td class="tg-us36"> Data Manipulation with DPLYR <sup>DC</sup> </td>
   </tr>
