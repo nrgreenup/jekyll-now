@@ -4,7 +4,8 @@ title: About Me
 permalink: /about_me/
 ---
 
-I am a PhD student in the Department of Sociology at Indiana University and an aspiring data scientist. As a sociologist, most of my work has been focused on politics and public opinion. However, throughout my tenure at IU, I have devoted the lion's share of my time to developing skills as a quantitative analyst (see section below). I am passionate about using these statistical skills to tell stories with and provide actionable insights using data.  
+I am a PhD student at Indiana University (living in Boston, MA) and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Stata, and SQL and continue to devote time to learning new technologies (currently Python). Thank you for visiting my blog!
+ 
 
 ### Statistical and Methodological Training and Experience
 #### Graduate Coursework
