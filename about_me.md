@@ -4,9 +4,8 @@ title: About Me
 permalink: /about_me/
 ---
 
-I am a PhD student at Indiana University (living in Boston, MA) and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Stata, and SQL and continue to devote time to learning new technologies (currently Python). Thank you for visiting my blog!
+I am a PhD student at Indiana University (living in Boston, MA), National Science Foundation Graduate Research Fellow, and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Stata, and SQL and continue to devote time to learning new technologies (currently Python). 
  
-
 ### Statistical and Methodological Training and Experience
 #### Graduate Coursework
 <table class="tg">
