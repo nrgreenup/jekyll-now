@@ -26,7 +26,7 @@ I am a PhD student in the Department of Sociology at Indiana University and an a
 
 #### Online Coursework
 <table class="tg">
-<caption style="font-size: 8px; align="bottom"> Websites used: DC = DataCamp, STAN = Stanford Online Course </caption>
+<caption align="bottom"> Websites: DC = DataCamp, STAN = Stanford Online Course </caption>
   <tr>
     <th class="tg-us36" colspan="3"> R </th>
   </tr>
