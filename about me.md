@@ -10,68 +10,67 @@ I am a PhD student in the Department of Sociology at Indiana University and an a
 #### Graduate Coursework
 <table class="tg">
   <tr>
-    <td> Bayesian statistics </td>
-    <td> Categorical data analysis (logistic/probit, poisson/negative binomial models) </td>
-    <td> Geographic information systems </td>
+    <td> Advanced Time Series Analysis </td>
+    <td> Bayesian Statistics </td>
+    <td> Categorical Data Analysis (logistic/probit, poisson/negative binomial models) </td> 
   </tr>
-    <td> Linear regression </td>
-    <td> Longitudinal/panel analysis </td>
-    <td> Network Analysis </td>   
+    <td> Geographic Information Systems </td>
+    <td> Linear Regression </td>
+    <td> Longitudinal/panel Analysis </td>   
   <tr>
+    <td> Network Analysis </td>  
     <td> Probability </td>    
-    <td> Research and survey design </td>
-     <td> Time series analysis </td>
-  </tr>
-  <tr>
+    <td> Research and Survey Design </td>
   </tr>
 </table>
 
 #### Online Coursework
 <table class="tg">
+<caption align="bottom"> Websites used: DC = DataCamp, STAN = Stanford Online Course </caption>
   <tr>
-    <th class="tg-us36" colspan="3"> R (DataCamp) </th>
+    <th class="tg-us36" colspan="3"> R </th>
   </tr>
   <tr>
-    <td class="tg-us36"> ARIMA Modeling </td>
-    <td class="tg-us36"> Cleaning Data </td>
-    <td class="tg-us36"> Data Manipulation with DPLYR </td>
+    <td class="tg-us36"> ARIMA Modeling <sup>DC</sup> </td>
+    <td class="tg-us36"> Cleaning Data <sup>DC</sup> </td>
+    <td class="tg-us36"> Data Manipulation with DPLYR <sup>DC</sup> </td>
   </tr>
   <tr>
-    <td class="tg-us36"> ggplot2: Part 1 </td>
-    <td class="tg-us36"> ggplot2: Part 2 </td>
-    <td class="tg-us36"> Forecasting </td>
+    <td class="tg-us36"> ggplot2: Part 1 <sup>DC</sup></td>
+    <td class="tg-us36"> ggplot2: Part 2 <sup>DC</sup></td>
+    <td class="tg-us36"> Forecasting <sup>DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Importing Data: Part 1 </td>
-    <td class="tg-yw4l"> Importing Data: Part 2 </td>
-    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies </td>
+    <td class="tg-yw4l"> Importing Data: Part 1 <sup>DC</sup></td>
+    <td class="tg-yw4l"> Importing Data: Part 2 <sup>DC</sup></td>
+    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies <sup>DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Intermediate R </td>
-    <td class="tg-yw4l"> Intermediate R: Practice </td>
-    <td class="tg-yw4l"> Introduction to R </td>
+    <td class="tg-yw4l"> Intermediate R <sup>DC</sup></td>
+    <td class="tg-yw4l"> Intermediate R: Practice <sup>DC</sup></td>
+    <td class="tg-yw4l"> Introduction to R <sup>DC</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Introduction to Time Series </td>
-    <td class="tg-yw4l"> Manipulating Time Series with xts and zoo </td>
-    <td class="tg-yw4l"> Multiple and Logistic Regression </td>
+    <td class="tg-yw4l"> Introduction to Time Series <sup>DC</sup></td>
+    <td class="tg-yw4l"> Manipulating Time Series with xts and zoo <sup>DC</sup></td>
+    <td class="tg-yw4l"> Multiple and Logistic Regression <sup>DC</sup></td>
   </tr>
    <tr>
-    <td class="tg-yw4l"> Supervised Learning: Classification </td>
-    <td class="tg-yw4l"> Writing Functions </td>
+    <td class="tg-yw4l"> Supervised Learning: Classification <sup>DC</sup></td>
+    <td class="tg-yw4l"> Writing Functions <sup>DC</sup></td>
     <td class="tg-yw4l"></td>
   </tr>
   <tr>
-    <th class="tg-yw4l" colspan="3"> SQL (Stanford Online) </th>
+    <th class="tg-yw4l" colspan="3"> SQL </th>
   </tr>
   <tr>
-    <td class="tg-yw4l"> Constraints and Triggers </td>
-    <td class="tg-yw4l"> Indexes and Transactions </td>
-    <td class="tg-yw4l"> On-Line Analytical Processing </td>
+    <td class="tg-yw4l"> Constraints and Triggers <sup>STAN</sup></td>
+    <td class="tg-yw4l"> Indexes and Transactions <sup>STAN</sup></td>
+    <td class="tg-yw4l"> On-Line Analytical Processing <sup>STAN</sup></td>
   </tr>
   <tr>
-    <td class="tg-yw4l"> SQL </td>
-    <td class="tg-yw4l"> Views and Authorization </td>
+    <td class="tg-yw4l"> SQL <sup>STAN</sup></td>
+    <td class="tg-yw4l"> Views and Authorization <sup>STAN</sup></td>
   </tr> 
 </table>
 
