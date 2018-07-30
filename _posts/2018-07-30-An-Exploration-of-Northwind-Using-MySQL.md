@@ -256,7 +256,7 @@ DELIMITER ;
 ```
 If we try `INSERT INTO orderDet VALUES (99999, 99999, 99999, -5 , 0);` once more, we get the expected error message, and the improper tuple is not inserted.
 
-![Trigger returns error]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/trigger-orderDETerror.png "Trigger Returns Error"){: height="100px" width="600px"}
+![Trigger returns error]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/trigger-orderDETerror.png "Trigger Returns Error"){: height="60px" width="700px"}
 
 Of course, we could do the same with any other value we want to restrict to be positive. For instance, product quantity:
 ```sql
