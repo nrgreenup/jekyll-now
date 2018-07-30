@@ -62,7 +62,7 @@ GROUP BY E.EmployeeID
 ORDER BY SalesGross DESC;
 ```
 
-![Employee Gross Sales]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/employee-gross_sales.png "Employee Gross Sales"){: height="400px" width="400px"}
+![Employee Gross Sales]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/employee-gross_sales.png "Employee Gross Sales"){: height="300px" width="600px"}
 
 We see that Margaret, Janet, and Nancy have made the most sales, while Steven rounds out the table as the lowest performing salesperson. Of course, we may be interested in net sales that take into account, for instance, discounts customers may have received on their purchase. Because this information is also available in the `orderDET` relation, a minor change to the `SELECT` statement takes care of this for us. In the output screenshotted below, there is little change in the rank ordering of employees, with only Laura and Robert swapping ranks, but the value of the sales expectedly decreases a bit.
 ```sql
@@ -74,7 +74,7 @@ GROUP BY E.EmployeeID
 ORDER BY SalesNet DESC;
 ```
 
-![Employee Net Sales]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/employee-net_sales.png "Employee Net Sales"){: height="400px" width="400px"}
+![Employee Net Sales]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/northwind-mySQL/employee-net_sales.png "Employee Net Sales"){: height="300px" width="600px"}
 
 Lastly, we may be interested in some aggregate measure of employee performance. Though sociodemographic data is sparse in the `employees` relation, there is information about employees' date of birth. Given this, I decided to investigate whether there is a difference in sales performance between "younger" and "older" employees. To do so, I decided to compare the sales of all employees born before 1960 with those born during or after 1960. First, I created an indicator variable based on the recorded date of birth:
 ```sql
