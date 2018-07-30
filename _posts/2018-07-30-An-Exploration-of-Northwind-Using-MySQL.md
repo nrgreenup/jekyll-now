@@ -33,7 +33,7 @@ The Northwind database contains sales data about a fictitious company. The datab
 Before jumping into any more complicated queries, it useful to get an initial picture of what each relation contains. After changing the name of the "order details" relation to "orderDET" for easier referencing, I get to work.
 
 The preliminary analyses give a good overview of the data. There are 77 distinct products and 9 product categories. There are 91 customers who have collectively placed 830 complete orders. In some of those orders, customers purchased multiple products; there are 2155 product orders. Lastly, there are 9 employees, 5 of whom operate in the United States and 4 in the United Kingdom. With this basic information in hand, I dive into some analyses.
-```
+```sql
 ALTER TABLE `northwind`.`order details` 
 RENAME TO  `northwind`.`orderDET`;
 
