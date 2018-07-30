@@ -226,4 +226,70 @@ HAVING SalesNet > 25000
 ORDER BY SalesNet DESC;
 ```
 
-## Some Useful Triggers
+## A Few Useful Triggers
+Lastly, when examining the schema of the Northwind data, it is readily apparent that a few triggers would be useful in maintaining efficiency and database integrity. First, I consider creating a trigger that prevents insertion of negative values that are required to be non-negative. For instance, it would never make sense for the unit price of an order to be negative. Yet, inserting a negative unit price is allowed by the database: `INSERT INTO orderDet VALUES (99999, 99999, -5, 99999 , 0)` is executed without error. Looking at the `orderDET` attribute, we see the tuple has been inserted.
+ _orderDET neg value screenshot_
+ 
+ This is allowed because the only constraint placed on the unit price attribute is that it cannot be null, as seen in the code that created the `orderDET` relation:
+ ```SQL
+ DROP TABLE IF EXISTS `order details`;
+CREATE TABLE `order details` (
+  `OrderID` int(11) NOT NULL,
+  `ProductID` int(11) NOT NULL,
+  `UnitPrice` decimal(19,4) NOT NULL DEFAULT '0.0000',
+  `Quantity` int(11) NOT NULL DEFAULT '1',
+  `Discount` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`OrderID`,`ProductID`),
+  KEY `OrderID` (`OrderID`),
+  KEY `ProductID` (`ProductID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+```
+
+What we can do, then, is implement a trigger that raises an error if a user tries to insert a negative unit price:
+```SQL
+DELIMITER $$
+CREATE TRIGGER NegPrice
+BEFORE INSERT ON orderDET 
+FOR EACH ROW 
+BEGIN
+	IF New.UnitPrice < 0 THEN
+    SIGNAL SQLSTATE '22003' SET MESSAGE_TEXT = 'Unit Price Must Be Positive';
+    END IF;
+END$$
+DELIMITER ;
+```
+If we try `INSERT INTO orderDet VALUES (99999, 99999, 99999, -5 , 0);` once more, we get the expected error message, and the improper tuple is not inserted.
+_insert error message SS_
+
+Of course, we could do the same with any other value we want to restrict to be positive. For instance, product quantity:
+```SQL
+DELIMITER $$
+CREATE TRIGGER NegQuantity
+BEFORE INSERT ON orderDET 
+FOR EACH ROW 
+BEGIN
+	IF New.Quantity < 0 THEN
+    SIGNAL SQLSTATE '22003' SET MESSAGE_TEXT = 'Quantity Must Be Positive';
+    END IF;
+END$$
+DELIMITER ;
+```
+
+Lastly, I implement a trigger that fires when an order is deleted from the `orders` relation. A tuple in the `orderDET` relation only makes sense if it corresponds to a matching tuple in the `orders` relation. Thus, if we delete an order from the database, we should also delete the details of that order. The following trigger does this:
+```SQL
+DELIMITER $$
+CREATE TRIGGER OrderDel
+AFTER DELETE ON orders 
+FOR EACH ROW 
+BEGIN
+	DELETE FROM orderDET
+    WHERE Old.OrderID = orderDET.OrderId ;
+END$$
+DELIMITER ;
+```
+To test that the trigger works properly, I implement the following. Sure enough, the values I inserted into the `orderDET` relation are deleted automatically when the matching tuple in the `orders` relation is deleted. 
+```SQL
+INSERT INTO orders VALUES(99999, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO orderDET VALUES(99999, 99999, 99999, 99999, 0);
+DELETE FROM orders WHERE OrderID = 99999;
+```
