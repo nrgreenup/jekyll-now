@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fun with MySQL"
+title: "An Exploration of Northwind Using MySQL"
 author: "Nolan Greenup"
 date: "29/7/2018"
 output:
@@ -157,3 +157,73 @@ ORDER BY Discount DESC;
  ```
  
  _10% savings screenshot_
+ 
+Of course, we could complicate the matter further by adding additional conditions. For instance, let's say we wanted to know all of the customers who averaged more than 5% savings on their orders that are located in a city which houses another Northwind customer. To do so, we add a subquery into the `WHERE` clause, which finds only those companies that share a city in common with another company. We find that there are 6 companies that save 5% on average that are in a city with another Northwind customer.
+
+```SQL
+SELECT * 
+FROM(
+	SELECT C.CompanyName,
+               C.City,
+               SUM(UnitPrice*Quantity) AS SalesGross , 
+               SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet,
+               1 - sum(UnitPrice*(1-Discount)*Quantity) / SUM(UnitPrice*Quantity) AS Discount
+	FROM orders O INNER JOIN orderDET D ON (O.OrderID = D.OrderID) 
+             INNER JOIN customers C ON (O.CustomerID = C.CustomerID)
+        GROUP BY O.CustomerID
+        HAVING Discount > 0.05
+        ORDER BY Discount DESC ) S 
+WHERE CompanyName IN 
+		(SELECT DISTINCT C1.CompanyName
+		FROM  customers C1, customers C2, customers C3
+		WHERE C1.City = C2.City AND C2.City = C3.City AND
+		      C1.CompanyName <> C2.CompanyName AND 
+                      C2.CompanyName <> C3.CompanyName AND 
+                      C1.CompanyName <> C3.CompanyName) ;  
+```
+
+Though less efficient, we could also implement the same query by changing the `WHERE` subquery to the following, which uses the `UNION` operator:
+```SQL
+WHERE CompanyName IN 
+   (SELECT C1.CompanyName
+   FROM customers C1, customers C2, customers C3
+   WHERE C1.City = C2.City AND C2.City = C3.City 
+         AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName 
+UNION
+   SELECT C2.CompanyName
+   FROM customers C1, customers C2, customers C3
+   WHERE C1.City = C2.City AND C2.City = C3.City 
+         AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName 
+UNION
+   SELECT C3.CompanyName
+   FROM customers C1, customers C2, customers C3
+   WHERE C1.City = C2.City AND C2.City = C3.City 
+         AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName ) ;
+```
+
+Of course, there are so many other interesting queries we could run on the Northwind data, a few of which I've included below. I won't go into any of them in great detail, but they each provide other interesting insights.
+``` SQL
+/* IN WHAT COUNTRY ARE SALES HIGHER? */
+SELECT Country, COUNT(O.OrderID) AS NumOrders, 
+       SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
+FROM employees E INNER JOIN orders O ON (E.EmployeeID = O.EmployeeID) 
+     INNER JOIN orderDET D ON (O.OrderID = D.OrderID)
+GROUP BY E.Country
+ORDER BY SalesNet DESC;
+
+/* BREAKDOWN BY CATEGORIES */
+SELECT C.CategoryID, C.CategoryName, SUM(D.UnitPrice*(1-D.Discount)*D.Quantity) AS SalesNet
+FROM orderDET D INNER JOIN products P ON (D.ProductID = P.ProductID) 
+     INNER JOIN categories C ON(C.CategoryID = P.CategoryID)
+GROUP BY C.CategoryID   
+ORDER BY SalesNet DESC;
+
+/* FIND ALL PRODUCTS THAT HAVE GENERATED GREATER THAN 25K IN SALES */
+SELECT P.ProductID, ProductName, SUM(D.UnitPrice*(1-D.Discount)*D.Quantity) AS SalesNet
+FROM orderDET D INNER JOIN products P ON (D.ProductID = P.ProductID)
+GROUP BY P.ProductID    
+HAVING SalesNet > 25000     
+ORDER BY SalesNet DESC;
+```
+
+## Some Useful Triggers
