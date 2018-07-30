@@ -17,7 +17,6 @@ _Introductory Information_
 _Analyses & Queries_   
 [Preliminary Analyses of Relations](#preliminary-analyses-of-relations)    
 [Employee Performance](#employee-performance)   
-[Customer Analytics](#customer-analytics)   
 [Sales Analytics](#sales-analytics)     
 [A Few Useful Triggers](#a-few-useful-triggers)
 
@@ -68,10 +67,10 @@ _INSERT IMAGE HERE (GROSS SALES)_
 We see that Margaret, Janet, and Nancy have made the most sales, while Steven rounds out the table as the lowest performing salesperson. Of course, we may be interested in net sales that take into account, for instance, discounts customers may have received on their purchase. Because this information is also available in the `orderDET` relation, a minor change to the `SELECT` statement takes care of this for us. In the output screenshotted below, there is little change in the rank ordering of employees, with only Laura and Robert swapping ranks, but the value of the sales expectedly decreases a bit.
 
 ```SQL
-SELECT LastName, FirstName, COUNT(O.OrderID) AS NumOrders, 
-       SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
-FROM employees E INNER JOIN orders O ON (E.EmployeeID = O.EmployeeID) 
-     INNER JOIN orderDET D ON (O.OrderID = D.OrderID)
+SELECT   LastName, FirstName, COUNT(O.OrderID) AS NumOrders, 
+         SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
+FROM     employees E INNER JOIN orders O ON (E.EmployeeID = O.EmployeeID) 
+         INNER JOIN orderDET D ON (O.OrderID = D.OrderID)
 GROUP BY E.EmployeeID
 ORDER BY SalesNet DESC;
 ```
@@ -96,38 +95,65 @@ GROUP BY E.birth1960
 ORDER BY SalesNet DESC;
 ```
 
-##Customer Analytics
-Next, I run a few queries that provide some insight into Northwind's customers. I begin by finding all customers and all of the orders those customers, returning: Customer name and ID, order ID and date, the country the order is shipped to, and the employee ID of the salesperson who completed the transaction. 
+## Sales Analytics 
+Next, I run a few queries that provide some insight into Northwind's customers and sales. I begin by finding all customers and all of the orders those customers, returning: Customer name and ID, order ID and date, the country the order is shipped to, and the employee ID of the salesperson who completed the transaction. 
 
 ```SQL 
 SELECT C.CustomerID, C.CompanyName, O.OrderID, O.OrderDate, O.ShipCountry, O.EmployeeID
-FROM customers C LEFT JOIN orders O ON (C.CustomerID = O.CustomerID);
+FROM   customers C LEFT JOIN orders O ON (C.CustomerID = O.CustomerID);
 ```
 
 Of course, this can easily be rewritten as a `RIGHT JOIN` by flipping the `orders` relation to the left side of the `JOIN` and the `customers` relation to the right side, per the preference of the end user. The results are equivalent.
 
 ```SQL
 SELECT C.CustomerID, C.CompanyName, O.OrderID, O.OrderDate, O.ShipCountry, O.EmployeeID
-FROM orders O RIGHT JOIN customers C ON (C.CustomerID = O.CustomerID);
+FROM   orders O RIGHT JOIN customers C ON (C.CustomerID = O.CustomerID);
 ```
 
 The earlier `SELECT * FROM orders limit 3000;` command found that there were 830 separate orders placed, though again some of those orders contained multiple products. But here, left (or right) joining the `customers` and `orders` relations provides 832 results. This indicates that there are 2 customers that are in the database that have not yet placed an order. Perhaps Northwind is invested in fostering an ongoing relationship with these customers. Luckily, they are easily identifiable. By appending an `IS NOT NULL` selection condition, the below code finds that the customers with IDs FISSA and PARIS have not placed any orders.
 
 ```SQL
 SELECT C.CustomerID, C.CompanyName, O.OrderID, O.OrderDate
-FROM customers C LEFT JOIN orders O ON (C.CustomerID = O.CustomerID)
-WHERE OrderID IS NULL;
+FROM   customers C LEFT JOIN orders O ON (C.CustomerID = O.CustomerID)
+WHERE  OrderID IS NULL;
 ```
 _insert image of not null results here_
 
-Lastly, I turn to information in the customers table that could potentially decrease operational costs significantly for Northwind. Seeing that Northwind is a global operation, it would be desirable to reduce shipping costs as much as possible. For instance, we may want to ensure that all orders shipped to the same area are shipped together on the same vessel. Thus, knowing which customers are located near one another could help significantly reduce shipping costs for Northwind. Using a series of self joins, we find all pairs of 5 companies that are located in the same city. Results show that there are 7 combinations of 5-customer pairs that are located within the same city.
+I next turn to information in the customers table that could potentially decrease operational costs significantly for Northwind. Seeing that Northwind is a global operation, it would be desirable to reduce shipping costs as much as possible. For instance, we may want to ensure that all orders shipped to the same area are shipped together on the same vessel. Thus, knowing which customers are located near one another could help significantly reduce shipping costs for Northwind. Using a series of self joins, we find all pairs of 5 companies that are located in the same city. Results show that there are 7 combinations of 5-customer pairs that are located within the same city.
 
 ```SQL
 SELECT C1.City, C1.CompanyName, C2.CompanyName, C3.CompanyName, C4.CompanyName, C5.CompanyName
-FROM customers C1, customers C2, customers C3, customers C4, customers C5
-WHERE C1.City = C2.City AND C2.City = C3.City AND C3.City = C4.City AND C4.City = C5.City 
-      AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName
-      AND C3.CompanyName < C4.CompanyName AND C4.CompanyName < C5.CompanyName;
+FROM   customers C1, customers C2, customers C3, customers C4, customers C5
+WHERE  C1.City = C2.City AND C2.City = C3.City AND C3.City = C4.City AND C4.City = C5.City 
+       AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName
+       AND C3.CompanyName < C4.CompanyName AND C4.CompanyName < C5.CompanyName;
 ```
 
 _insert image of 5 city customers here_
+
+In my final set of queries, I want to discover what companies are the "big savers" when it comes to discounts. I first begin by finding all of those companies that have, on average, saved more than 10% on their orders. The following code does just that. Of course, it should be noted there are a few different ways this query could be written, both with and without subqueries in the `FROM` clause. Both queries below produce the same results. There are 8 companies that have saved more than 10% on average on their orders.
+
+```SQL
+SELECT * 
+FROM (SELECT C.CompanyName,
+             SUM(UnitPrice*Quantity) AS SalesGross , 
+             SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet,
+             1 - SUM(UnitPrice*(1-Discount)*Quantity) / SUM(UnitPrice*Quantity) AS Discount
+      FROM orders O INNER JOIN orderDET D ON (O.OrderID = D.OrderID) 
+           INNER JOIN customers C ON (O.CustomerID = C.CustomerID)
+      GROUP BY O.CustomerID
+      HAVING Discount > 0.1
+      ORDER BY Discount DESC ) S ;
+ 
+SELECT C.CompanyName,
+       SUM(UnitPrice*Quantity) AS SalesGross , 
+       SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet,
+       1 - SUM(UnitPrice*(1-Discount)*Quantity) / SUM(UnitPrice*Quantity) AS Discount
+FROM   orders O INNER JOIN orderDET D ON (O.OrderID = D.OrderID) 
+       INNER JOIN customers C ON (O.CustomerID = C.CustomerID)
+GROUP BY O.CustomerID
+HAVING Discount > 0.1
+ORDER BY Discount DESC;
+ ```
+ 
+ _10% savings screenshot_
