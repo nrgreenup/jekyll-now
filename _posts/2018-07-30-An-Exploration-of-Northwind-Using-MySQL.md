@@ -51,7 +51,7 @@ With regard to analysis, I'll briefly look at 3 sectors of Northwind's operation
 I first create an index on the `EmployeeID` attribute in the `employees` relation. Indexes on an attribute are particularly helpful for increasing efficiency when that attribute is either used as a criterion in a selection condition (`WHERE` clauses) or is part of a joining condition. Here, because the `employees` relation is joined to the `orders` relation using the `EmployeeID` attribute, an index is helpful. Of course, the increased efficiency is minimal on a Northwind-like database of relatively small size; the true benefit of indexes is seen in much larger databases.
 
 A brief note: The `NumOrders` attribute displays the number of product orders, which we found to be 2155 earlier. So if one customer bought 4 different products, that would count as 4 in the `NumOrders` attribute, even if the products were all bought during one transaction.
-```SQL
+```sql
 CREATE UNIQUE INDEX EmployeeID on employees(EmployeeID);
 
 SELECT LastName, FirstName, COUNT(O.OrderID) AS NumOrders, 
