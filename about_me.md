@@ -29,7 +29,6 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 <caption align="bottom"> Websites: DC = DataCamp, STAN = Stanford Online Course </caption>
   <tr>
     <th class="tg-us36" colspan="3"> R </th>
-  </tr>
   <tr>
     <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
