@@ -75,11 +75,13 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
      <th class="tg-yw4l" colspan="3"> Python </th>
   </tr>
   <tr>
+    <td class="tg-yw4l"> Importing Data into Python 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Importing Data into Python 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intermediate Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Intro to Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Python Data Science Toolbox 1 (Functions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
     <tr>
+    <td class="tg-yw4l"> Intro to Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Python Data Science Toolbox 1 (Functions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Python Data Science Toolbox 2 (Iterators and List Comprehensions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
 
   </tr>
