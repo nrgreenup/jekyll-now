@@ -39,59 +39,59 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
     <td class="tg-us36"> ggplot2: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr style="background-color:White;color:black;">
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Importing Data: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr style="background-color:White;color:black;">
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Intermediate R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intermediate R: Practice<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Introduction to R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr style="background-color:White;color:black;">
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Introduction to Time Series<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Manipulating Time Series with xts and zoo<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Multiple and Logistic Regression<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr style="background-color:white;color:black;">
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Supervised Learning: Classification<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"></td>
   </tr>
-  <tr style="background-color:WhiteSmoke;color:black;">
-    <th class="tg-yw4l" colspan="3"> SQL </th>
-  </tr>
-  <tr style="background-color:White;color:black;">
-    <td class="tg-yw4l"> Constraints and Triggers<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-    <td class="tg-yw4l"> Indexes and Transactions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-    <td class="tg-yw4l"> On-Line Analytical Processing<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-  </tr>
-  <tr style="background-color:White;color:black;">
-    <td class="tg-yw4l"> Recursion in SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-    <td class="tg-yw4l"> SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-    <td class="tg-yw4l"> Views and Authorization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-  </tr>
-  <tr style="background-color:White;color:black;"> 
+  <tr style="background-color:Silver;color:black;"> 
     <th class="tg-yw4l" colspan="3"> Python </th>
   </tr>
-  <tr style="background-color:White;color:black;">
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Intermediate Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup>   </td>
     <td class="tg-yw4l"> Intro to Data Visualization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intro to Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Manipulating DataFrames with pandas<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> pandas Foundations<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Python Data Science Toolbox 1 (Functions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Python Data Science Toolbox 2 (Iterators and List Comprehensions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+  </tr>
+  <tr style="background-color:Silver;color:black;">
+    <th class="tg-yw4l" colspan="3"> SQL </th>
+  </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Constraints and Triggers<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> Indexes and Transactions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> On-Line Analytical Processing<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+  </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Recursion in SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
+    <td class="tg-yw4l"> Views and Authorization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
   </tr>
 </table>
 
