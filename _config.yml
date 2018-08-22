@@ -8,6 +8,9 @@ name: Nolan Greenup
 # Short bio or description (displayed in the header)
 description: Data Analyst & Ph.D Student in Boston, MA
 
+# Theme:
+theme: minima
+
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: 
 
