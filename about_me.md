@@ -71,7 +71,8 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
     <td class="tg-yw4l"> Recursion in SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
     <td class="tg-yw4l"> SQL<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
     <td class="tg-yw4l"> Views and Authorization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">STAN</sup></td>
-  </tr style="background-color:White;color:black;"> 
+  </tr>
+  <tr style="background-color:White;color:black;"> 
     <th class="tg-yw4l" colspan="3"> Python </th>
   </tr>
   <tr style="background-color:White;color:black;">
