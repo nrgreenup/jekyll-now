@@ -4,7 +4,7 @@ title: About Me
 permalink: /about_me/
 ---
 
-I am a PhD student at Indiana University (living in Boston, MA), National Science Foundation Graduate Research Fellow, and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Stata, and SQL and continue to devote time to learning new technologies (currently Python). 
+I am a PhD student at Indiana University (living in Boston, MA), National Science Foundation Graduate Research Fellow, and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Python, Stata, and SQL and continue to devote time to advancing my programming abilities (currently more Python).
  
 ### Statistical and Methodological Training and Experience
 #### Graduate Coursework
@@ -27,34 +27,34 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 #### Online Coursework
 <table class="tg">
 <caption align="bottom"> Websites: DC = DataCamp, STAN = Stanford Online Course </caption>
-  <tr>
+  <tr bgcolor = "#C9C9C9">
     <th class="tg-us36" colspan="3"> R </th>
-  <tr>
+  <tr bgcolor = "#FFFFFF">
     <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Data Manipulation with DPLYR<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
   </tr>
-  <tr>
+  <tr bgcolor = "#FFFFFF">
     <td class="tg-us36"> ggplot2: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> ggplot2: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr bgcolor = "#FFFFFF">
     <td class="tg-yw4l"> Importing Data: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr bgcolor = "#FFFFFF">
     <td class="tg-yw4l"> Intermediate R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intermediate R: Practice<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Introduction to R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-  <tr>
+  <tr bgcolor = "#FFFFFF">
     <td class="tg-yw4l"> Introduction to Time Series<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Manipulating Time Series with xts and zoo<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Multiple and Logistic Regression<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
-   <tr>
+   <tr bgcolor = "#FFFFFF">
     <td class="tg-yw4l"> Supervised Learning: Classification<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"></td>
