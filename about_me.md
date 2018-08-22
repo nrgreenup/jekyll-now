@@ -9,15 +9,17 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 ### Statistical and Methodological Training and Experience
 #### Graduate Coursework
 <table class="tg">
-  <tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td> Advanced Time Series Analysis </td>
     <td> Bayesian Statistics </td>
     <td> Categorical Data Analysis (logistic/probit, poisson/negative binomial models) </td> 
   </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td> Geographic Information Systems </td>
     <td> Linear Regression </td>
     <td> Longitudinal/panel Analysis </td>   
-  <tr>
+  </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
     <td> Network Analysis </td>  
     <td> Probability </td>    
     <td> Research and Survey Design </td>
@@ -60,26 +62,40 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
     <td class="tg-yw4l"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"></td>
   </tr>
+ 
+ 
   <tr style="background-color:Silver;color:black;"> 
     <th class="tg-yw4l" colspan="3"> Python </th>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-yw4l"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Importing Data Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Importing Data Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Customer Analytics & A/B Testing<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Extreme Gradient Boosting with XGBoost<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
-    <td class="tg-yw4l"> Intermediate Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup>   </td>
+    <td class="tg-yw4l"> Importing Data Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Importing Data Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Intermediate Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+  </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Intro to Databases with Python<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intro to Data Visualization<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intro to Python for Data Science<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Linear Classifiers<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Machine Learning with Tree-based Models<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Manipulating DataFrames with pandas<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> pandas Foundations<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Python Data Science Toolbox 1 (Functions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Merging DataFrames with pandas<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> pandas Foundations<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Preprocessing for Machine Learning<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+  </tr>
+  <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Python Data Science Toolbox 1 (Functions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Python Data Science Toolbox 2 (Iterators and List Comprehensions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+    <td class="tg-yw4l"> Supervised Learning with scikit-learn (Iterators and List Comprehensions)<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:Silver;color:black;">
     <th class="tg-yw4l" colspan="3"> SQL </th>
