@@ -27,14 +27,14 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 #### Online Coursework
 <table class="tg">
 <caption align="bottom"> Websites: DC = DataCamp, STAN = Stanford Online Course </caption>
-  <tr style="background-color:gray;color:black;">
+  <tr style="background-color:Gainsboro;color:black;">
     <th class="tg-us36" colspan="3"> R </th>
-  <tr style="background-color:white;color:black;">
+  <tr style="background-color:Snow;color:black;">
     <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Data Manipulation with DPLYR<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
   </tr>
-  <tr style="background-color:white;color:black;">
+  <tr style="background-color:Snow;color:black;">
     <td class="tg-us36"> ggplot2: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> ggplot2: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
