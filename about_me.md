@@ -95,7 +95,6 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
   </tr>
 </table>
 
-
 #### Teaching
 I taught 2 semesters of an undergraduate research methods and statistics class, which covered survey design and sampling procedures, measures of central tendency and dispersion, standardization (e.g. z-scores), tabular and graphical displays of data using Microsoft Excel, statistical inference (e.g. confidence intervals and p-values), and a cursory introduction to linear regression. My syllabus can be found [here](https://iu.app.box.com/file/283732193861).
 
