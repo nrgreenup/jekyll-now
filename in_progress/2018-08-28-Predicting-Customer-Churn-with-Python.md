@@ -27,6 +27,7 @@ Data for these analyses come from [IBM](https://community.watsonanalytics.com/wp
 ## Data Cleaning and Preprocessing
 I begin by importing all of the packages necessary for data cleaning and analysis and then import the data and store it to the object `df`.
 ```python
+### Import required packages for preprocessing and analysis
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -40,6 +41,58 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import (GradientBoostingClassifier,
                               RandomForestClassifier)
-                              
+### Import data                  
 df = pd.read_csv('churn.csv')
+```
+I then dive into some exploratory data analysis. I start with as broad a scope as possible, looking at generic summary information. The following commands indicate that there are 7043 observations over 21 features,most of which are categorical. The scales of our two continuous features are quite different from each other; customer tenure has a mean of 32 and standard devation of 25, while monthly charges has a mean of 65 and standard deviation of 30. Becuase some of our classifiers are distance-based (e.g. K Nearest Neighbors), we will need to standardize these features to be on the same scale. I do so later.
+```python
+### Get preliminary info about dataframe
+print(df.info()) 
+print(df.isnull().sum()) 
+print(df.describe()) 
+```
+I next collapse a handful of the categorical variables related to specific internet services from multiclass to binary. All customers that don't have a specialized internet service because they don't have internet service at all are recoded. The same is done for the feature measuring whether the customer has multiple phone lines; if they do not have any phone service at all, their value for multiple phone lines is changed from 'no phone service' to 'no'.
+```python
+# 6 features, convert 'no internet service' to 'no'
+no_int_service_vars = ['OnlineSecurity', 'OnlineBackup', 
+                       'DeviceProtection','TechSupport', 
+                       'StreamingTV', 'StreamingMovies']
+                       
+for var in no_int_service_vars:
+    df[var] = df[var].map({'No internet service': 'No',
+                           'Yes': 'Yes',
+                           'No': 'No'}).astype('category')
+    
+for var in no_int_service_vars:
+    print(df[var].value_counts())
+```
+Having done so, I can iterate through all of the categorical variables and plot their distributions.
+```python
+## Define list of categorical variables
+cat_vars = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
+            'PhoneService', 'MultipleLines', 'InternetService', 
+            'OnlineSecurity', 'OnlineBackup','DeviceProtection', 'TechSupport', 
+            'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling',
+            'PaymentMethod', 'Churn']
+            
+## Plot distributions of categorical variables
+for var in cat_vars:
+    ax = sns.countplot(x = df[var], data = df, palette = 'colorblind')
+    total = float(len(df[var])) 
+    for p in ax.patches:
+        height = p.get_height()
+        ax.text(p.get_x()+p.get_width()/2.,
+                height + 10,
+                '{:1.2f}'.format(height/total),
+                ha="center")
+    plt.title('Distribution of ' + str(var))
+    plt.ylabel('Number of Customers')
+    plt.figtext(0.55, -0.01 , 
+                'Decimal above bar is proportion of total in that class',
+                horizontalalignment = 'center', fontsize = 8,
+                style = 'italic')
+    plt.xticks(rotation = 60)
+    plt.tight_layout()
+    plt.savefig('plot_dist-' + str(var) + '.png', dpi = 200)
+    plt.show()
 ```
