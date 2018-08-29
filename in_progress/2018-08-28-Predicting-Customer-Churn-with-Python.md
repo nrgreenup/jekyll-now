@@ -175,7 +175,42 @@ Best KNN Training Score: 0.7949290060851927
 KNN Test Performance: 0.7818267865593942
 KNN AUROC: 0.8227581684032563
 ```
-The grid search selects *K* = 23 and uniform weights; thus, each observation is classified according to the 23 observations nearest to it, with each of those 23 observations having equal weight in the final classification. Because the best training score during cross-validation (0.795) is close to our out-of-sample test performance (0.782), we can be reasonably confident we did not overfit our model. The area under the receiver operating characteristics curve (AUROC) for the KNN is 0.823. An AUC of 1 indicates a perfect model; an AUC of 0.5 indicates a model that performs no better than a random guess. Thus, we want a model with an AUC as close to 1 as possible. The obtained AUC of 0.823 is strong for a first model! 
+The grid search selects *K* = 23 and uniform weights; thus, each observation is classified according to the 23 observations nearest to it, with each of those 23 observations having equal weight in the final classification. Because the best training score during cross-validation (0.795) is close to our out-of-sample test performance (0.782), we can be reasonably confident we did not overfit our model. The area under the receiver operating characteristics curve (AUROC) for the KNN is 0.823. An AUC of 1 indicates a perfect model; an AUC of 0.5 indicates a model that performs no better than a random guess. Thus, we want a model with an AUC as close to 1 as possible. The obtained AUC of 0.823 is a strong start to our classification analyses. To foreshadow, I will discuss AUCs in more detail later when I compare the four classification models.
 
 ## Model 2: Logistic Regression
-I next implement a logistic regression classifier.
+I next implement a logistic regression (LR) classifier. The default output from logistic regression is a predicted probability: the probability that any given observation (here: a customer) is "1" (here: churns) given some set of inputs (here: our predictor variables). Stated otherwise, LR gives us *P*(y=1 | X) for each observation we wish to classify. I reserve a more detailed discussion of decision thresholds until a later discussion of ROC curves. For the purposes of the model accuracy here, if *P* is greater than 0.5 -- that is here, if it is more likely than not the customer churns, the customer is predicted to churn, and vice verse when *P* is less than 0.5. 
+
+I implement the logistic regression as follows. I again use 5-fold cross-validation. Here, I use grid searching to select the optimal value of *C*, the inverse of regularization strength, where smaller values of *C* mean more regularization. In short, because coefficients that are large in magnitude can lead to overfitting, regularization penalizes models large coefficients. This helps combat overfitting the models to our training data.
+```python
+## Instantiate classifier
+lr = LogisticRegression(random_state = 30)
+
+## Set up hyperparameter grid for tuning
+lr_param_grid = {'C' : [0.0001, 0.001, 0.01, 0.05, 0.1] }
+
+## Tune hyperparamters
+lr_cv = GridSearchCV(lr, param_grid = lr_param_grid, cv = 5)
+
+## Fit lr to training data
+lr_cv.fit(X_train, y_train)
+
+## Get info about best hyperparameters
+print("Tuned LR Parameters: {}".format(lr_cv.best_params_))
+print("Best LR Training Score:{}".format(lr_cv.best_score_)) 
+
+## Predict lr on test data
+print("LR Test Performance: {}".format(lr_cv.score(X_test, y_test)))
+
+## Obtain model performance metrics
+lr_pred_prob = lr_cv.predict_proba(X_test)[:,1]
+lr_auroc = roc_auc_score(y_test, lr_pred_prob)
+print("LR AUROC: {}".format(lr_auroc))
+lr_y_pred = lr_cv.predict(X_test)
+
+## OUTPUT
+Tuned LR Parameters: {'C': 0.1}
+Best LR Training Score:0.8087221095334686
+LR Test Performance: 0.7917652626597255
+LR AUROC: 0.8340126936435306
+```
+Our regularization parameter *C* is optimal at 0.1. Again, given that the training and test performance are close to each other, there is little concern of overfitting. The area under the receiver operating characteristics curve (AUROC) for the LR classifier is 0.834... an (expected) improvement over the KNN.
