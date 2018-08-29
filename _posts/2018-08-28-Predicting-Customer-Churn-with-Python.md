@@ -96,12 +96,12 @@ for var in cat_vars:
     plt.savefig('plot_dist-' + str(var) + '.png', dpi = 200)
     plt.show()
 ```
-![Distribution of Customer Churn]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot_dist-Churn.png "EDistribution of Customer Churn"){: height="350px" width="350px"}
+![Distribution of Customer Churn]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot_dist-Churn.png "Distribution of Customer Churn"){: height="350px" width="350px"}
 ![Distribution of Senior Citizen]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot_dist-SeniorCitizen.png "Distribution of Senior Citizen"){: height="350px" width="350px"}
 
 Next, I perform some analyses exploring the distribution of customer churn broken down by features of interest. For instance, violin plots clearly indicate that the bulk of those who churn are relatively new customers and tend to have higher monthly charges. Looking at categorical predictors, we can also see that, for instance, contract length matters quite a bit; about 43% of month-to-month contracts churn, while only 11% of one-year and 3% of two-year contracts do the same. Visualizations of the distributions of all variables (including those not included here), as well as select breakdowns of churn, can be found [here](https://github.com/nrgreenup/nrgreenup.github.io/tree/master/images/customer-churn).
 
-![Distribution of Customer Churn by Tenure and Monthly Charges]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-churn_by_charges_tenure.png "Distribution of Customer Churn by Tenure and Monthly Charges"){: height="500px" width="500px"}
+![Distribution of Customer Churn by Tenure and Monthly Charges]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-churn_by_charges_tenure.png "Distribution of Customer Churn by Tenure and Monthly Charges"){: height="500px" width="700px"}
 ![Distribution of Customer Churn by Contract Length]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-churn_by_contract.png "Distribution of Customer Churn by Contract Length"){: height="500px" width="700px"}
 
 Now, having explored the data thoroughly, I preprocess the data for analysis. First, as mentioned above, it is necessary to standardize continuous measures so that they are on the same scale. I use `StandardScaler` from `sklearn.preprocessing` to do so, transforming each continuous measure to have zero mean and unit standard deviation (sd = 1).
