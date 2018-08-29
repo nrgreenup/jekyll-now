@@ -66,7 +66,7 @@ for var in no_int_service_vars:
 for var in no_int_service_vars:
     print(df[var].value_counts())
 ```
-Having done so, I can iterate through all of the categorical variables and plot their distributions.
+Having done so, I can iterate through all of the categorical variables and plot their distributions. Plots of categorical distributions reveal, for instance, that roughly 27% of customers observed in the dataset churned in the past month and that 16% of customers are senior citizens. 
 ```python
 ## Define list of categorical variables
 cat_vars = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
@@ -96,3 +96,37 @@ for var in cat_vars:
     plt.savefig('plot_dist-' + str(var) + '.png', dpi = 200)
     plt.show()
 ```
+![Distribution of Customer Churn]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot_dist-Churn.png "EDistribution of Customer Churn"){: height="300px" width="300px"}
+![Distribution of Senior Citizen]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot_dist-SeniorCitizen.png "Distribution of Senior Citizen"){: height="300px" width="300px"}
+
+Next, I perform some analyses exploring the distribution of customer churn broken down by features of interest. For instance, violin plots clearly indicate that the bulk of those who churn are relatively new customers and tend to have higher monthly charges. Looking at categorical predictors, we can also see that, for instance, contract length matters quite a bit; about 43% of month-to-month contracts churn, while only 11% of one-year and 3% of two-year contracts do the same. Visualizations of the distributions of all variables (including those not included here), as well as select breakdowns of churn, can be found [here](https://github.com/nrgreenup/nrgreenup.github.io/tree/master/images/customer-churn).
+![Distribution of Customer Churn by Tenure and Monthly Charges]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-churn_by_charges_tenure.png "Distribution of Customer Churn by Tenure and Monthly Charges"){: height="500px" width="500px"}
+![Distribution of Customer Churn by Contract Length]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-churn_by_contract.png "Distribution of Customer Churn by Contract Length"){: height="500px" width="500px"}
+
+Now, having explored the data thoroughly, I preprocess the data for analysis. First, as mentioned above, it is necessary to standardize continuous measures so that they are on the same scale. I use `StandardScaler` from `sklearn.preprocessing` to do so, transforming each continuous measure to have zero mean and unit standard deviation (sd = 1).
+```python
+### Standardize continuous variables for distance based models
+scale_vars = ['tenure', 'MonthlyCharges']
+scaler = StandardScaler() 
+df[scale_vars] = scaler.fit_transform(df[scale_vars])
+df[scale_vars].describe()
+```
+Lastly, I binarize all binary variables using `LabelEncoder` from `sklearn.preprocessing` and one-hot encode multi-class categorical variables using `get_dummies` from `pandas`. One-hot encoding is one method of preparing categorical variables so that they can be properly utilized by machine learning algorithms. For any categorical variable with some number of levels *d*, one-hot encoding returns *d* binary variables, one each for every level of the original categorical variable. For instance, encoding a categorical measure of political partisanship (Democrat, Republican, Independent, Other) would return 4 binary variables, one each for Democrat, Republican, Independent, and other.
+```python
+## Binarize binary variables
+df_enc = df.copy()
+binary_vars = ['gender', 'SeniorCitizen', 'Partner', 'Dependents',
+               'PhoneService', 'MultipleLines', 'OnlineSecurity', 
+               'OnlineBackup','DeviceProtection', 'TechSupport', 
+               'StreamingTV', 'StreamingMovies', 'PaperlessBilling',
+               'Churn']
+enc = LabelEncoder()
+df_enc[binary_vars] = df_enc[binary_vars].apply(enc.fit_transform)
+
+## One-hot encode multi-category cat. variables
+multicat_vars = ['InternetService', 'Contract', 'PaymentMethod']
+df_enc = pd.get_dummies(df_enc, columns = multicat_vars)
+df_enc.iloc[:,16:26] = df_enc.iloc[:,16:26].astype(int)
+print(df_enc.info())
+```
+Examining the output of the final line in the code above, along with a quick manual inspection of the new dataframe `df_enc`, ensures that the data is fully prepared for analysis.
