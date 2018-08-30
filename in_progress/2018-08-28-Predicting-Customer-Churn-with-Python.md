@@ -7,7 +7,7 @@ output:
   html_document: default
 ---
 
-In this post, I examine and discuss the 4 classifiers I fit to predict customer churn: K Nearest Neighbors, Logistic Regression, Random Forest, and Gradient Boosting. I first outline the data cleaning and preprocessing procedures I implemented to prepare the data for modeling. I then proceed to a discusison of each model in turn, highlighting what the model actually does, how I tuned the model's hyperparameters, and the results of each model. The best performing model has an out-of-sample test performance of 80%, and more importantly, an AUC of 0.84. I conclude by comparing the efficacy of the models and discussing avenues by which the models could be improved even further.
+In this post, I examine and discuss the 4 classifiers I fit to predict customer churn: K Nearest Neighbors, Logistic Regression, Random Forest, and Gradient Boosting. I first outline the data cleaning and preprocessing procedures I implemented to prepare the data for modeling. I then proceed to a discusison of each model in turn, highlighting what the model actually does, how I tuned the model's hyperparameters, and the results of each model. The best performing model has an out-of-sample test performance of about 80%, and more importantly, an AUC of 0.84. I conclude by comparing the efficacy of the models and discussing avenues by which the models could be improved even further.
 
 NOTE: The following report provides a detailed description of my analyses. To obtain the files used for analysis, see the [repository home page](https://github.com/nrgreenup/sales-forecast).
 
@@ -19,6 +19,7 @@ _Data Cleaning and Analysis_
 [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)   
 [Model 1: K Nearest Neighbors](#model-1-k-nearest-neighbors)   
 [Model 2: Logistic Regression](#model-2-logistic-regression)   
+[Model 3: Random Forest](#model-3-random-forest)
 
 _Concluding Remarks and Information_   
 [Summary of Findings](#summary-of-findings)   
@@ -46,12 +47,35 @@ from sklearn.ensemble import (GradientBoostingClassifier,
 ### Import data                  
 df = pd.read_csv('churn.csv')
 ```
-I then dive into some exploratory data analysis. I start with as broad a scope as possible, looking at generic summary information. The following commands indicate that there are 7043 observations over 21 features,most of which are categorical. The scales of our two continuous features are quite different from each other; customer tenure has a mean of 32 and standard devation of 25, while monthly charges has a mean of 65 and standard deviation of 30. Becuase some of our classifiers are distance-based (e.g. K Nearest Neighbors), we will need to standardize these features to be on the same scale. I do so later.
+I then dive into some exploratory data analysis. I start with as broad a scope as possible, looking at generic summary information. The following commands indicate that there are 7043 observations over 21 features, most of which are categorical. The scales of our two continuous features are quite different from each other; customer tenure has a mean of 32 and standard devation of 25, while monthly charges has a mean of 65 and standard deviation of 30 and total charges has a mean of 2283 and standard deviation of 2266. Because some of our classifiers are distance-based (e.g. K Nearest Neighbors), we will need to standardize these features to be on the same scale. I do so later.
 ```python
 ### Get preliminary info about dataframe
-print(df.info()) 
-print(df.isnull().sum()) 
-print(df.describe()) 
+print(df.info()) # Categorical variables are of type 'object'
+print(df.isnull().sum()) # No NaNs
+
+## Set TotalCharges to float 
+df['TotalCharges'] = df['TotalCharges'].replace(r'^\s*$', np.nan, regex=True)
+df['TotalCharges'] = pd.to_numeric(df['TotalCharges'])
+
+## Set senior citizen to type category
+df['SeniorCitizen'] = df['SeniorCitizen'].map({1: 'yes', 0: 'no'}).astype('category')
+
+## Check info of continuous features 
+print(df.info()) # Conversion successful
+print(df.describe()) # Disparate ranges, should be normalized
+```
+I next examine correlations between the continuous features. Because total charges are highly correlated with both tenure and monthly charges, we will remove total charges during feature selection later. In fact, as we see in the correlation between the created variable `tenuremonth` and `TotalCharges`, `TotalCharges` is essentially the multiplication of `tenure` by `MonthlyCharges`. Thus, we will retain only `tenure` and `MonthlyCharges` as features for modeling.
+```python
+## Examine correlations
+df['tenuremonth'] = (df['tenure'] * df['MonthlyCharges']).astype(float)
+df.corr()
+
+## OUTPUT
+                  tenure  MonthlyCharges  TotalCharges  tenuremonth
+tenure          1.000000        0.247900      0.825880     0.826568
+MonthlyCharges  0.247900        1.000000      0.651065     0.651566
+TotalCharges    0.825880        0.651065      1.000000     0.999560
+tenuremonth     0.826568        0.651566      0.999560     1.000000
 ```
 I next collapse a handful of the categorical variables related to specific internet services from multiclass to binary. All customers that don't have a specialized internet service because they don't have internet service at all are recoded. The same is done for the feature measuring whether the customer has multiple phone lines; if they do not have any phone service at all, their value for multiple phone lines is changed from 'no phone service' to 'no'.
 ```python
@@ -114,7 +138,7 @@ scaler = StandardScaler()
 df[scale_vars] = scaler.fit_transform(df[scale_vars])
 df[scale_vars].describe()
 ```
-Lastly, I binarize all binary variables using `LabelEncoder` from `sklearn.preprocessing` and one-hot encode multi-class categorical variables using `get_dummies` from `pandas`. One-hot encoding is one method of preparing categorical variables so that they can be properly utilized by machine learning algorithms. For any categorical variable with some number of levels *d*, one-hot encoding returns *d* binary variables, one each for every level of the original categorical variable. For instance, encoding a categorical measure of political partisanship (Democrat, Republican, Independent, Other) would return 4 binary variables, one each for Democrat, Republican, Independent, and other.
+Lastly, I binarize all binary variables using `LabelEncoder` from `sklearn.preprocessing` and one-hot encode multi-class categorical variables using `get_dummies` from `pandas`. One-hot encoding is one method of preparing categorical variables so that they can be properly utilized by machine learning algorithms. For any categorical variable with some number of levels *d*, one-hot encoding returns *d* binary variables, one each for every level of the original multi-class categorical variable. For instance, encoding a categorical measure of political partisanship (Democrat, Republican, Independent, Other) would return 4 binary variables, one each for Democrat, Republican, Independent, and Other.
 ```python
 ## Binarize binary variables
 df_enc = df.copy()
@@ -141,7 +165,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3,stratif
 ## Model 1: K Nearest Neighbors
 I begin with one of the simplest, but most interpretable, machine learning models: K Nearest Neighbors (KNN). In short, KNN classifies a given observation *O* based on the *K* observations that are most similar to it using a simple majority vote. For instance, in a binary setting where *K*=9, if 5 of the 9 nearest observations to *O* are "1" and 4 of the 9 nearest observations to *O* are "0", then *O* is classified as "1". "Nearest" is determined using one of a several distance metrics; the `scikit.learn` KNN classifer defaults to [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance).
 
-I implement the KNN using the following code. In addition, I implement grid searching to tune two hyperparameters of the model, *K* and weights. This allows us to find the most optimal value of for both hyperparameters in order to maximize performance. Grid searching is often computationally taxing, so while I use it here for the KNN, computational performance could be sped up using randomized searching (more on that later)! I also use 5-fold [cross-validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics)) to help reduce overfitting the model as much as possible.
+I implement KNN using the following code. In addition, I implement grid searching to tune two hyperparameters of the model, *K* and weights. This allows us to find the most optimal value of for both hyperparameters in order to maximize performance. Grid searching is computationally taxing, so while I use it here for the KNN, computational performance could be sped up using randomized searching (more on that later). Of course, a randomized search is less exhaustive and thus less certain to provide the *most* optimal hyperparameters, so there is a trade-off here. I also use 5-fold [cross-validation](https://en.wikipedia.org/wiki/Cross-validation_(statistics)) to help reduce overfitting the model as much as possible.
 ```
 knn = KNeighborsClassifier()
 
@@ -175,12 +199,12 @@ Best KNN Training Score: 0.7949290060851927
 KNN Test Performance: 0.7818267865593942
 KNN AUROC: 0.8227581684032563
 ```
-The grid search selects *K* = 23 and uniform weights; thus, each observation is classified according to the 23 observations nearest to it, with each of those 23 observations having equal weight in the final classification. Because the best training score during cross-validation (0.795) is close to our out-of-sample test performance (0.782), we can be reasonably confident we did not overfit our model. The area under the receiver operating characteristics curve (AUROC) for the KNN is 0.823. An AUC of 1 indicates a perfect model; an AUC of 0.5 indicates a model that performs no better than a random guess. Thus, we want a model with an AUC as close to 1 as possible. The obtained AUC of 0.823 is a strong start to our classification analyses. To foreshadow, I will discuss AUCs in more detail later when I compare the four classification models.
+The grid search selects *K* = 23 and uniform weights; thus, each observation is classified according to the 23 observations nearest to it, with each of those 23 observations having equal weight in the final classification. Because the best training score during cross-validation (0.795) is close to our out-of-sample test performance (0.782), we can be reasonably confident we did not overfit our model. The area under the receiver operating characteristics curve (AUROC) for the KNN is 0.823. An AUC of 1 indicates a perfect model; an AUC of 0.5 indicates a model that performs no better than a classifier without any information. Thus, we want a model with an AUC as close to 1 as possible. The obtained AUC of 0.823 is a strong start to our classification analyses. To foreshadow, I will discuss AUCs in more detail later when I compare the four classification models.
 
 ## Model 2: Logistic Regression
-I next implement a logistic regression (LR) classifier. The default output from logistic regression is a predicted probability: the probability that any given observation (here: a customer) is "1" (here: churns) given some set of inputs (here: our predictor variables). Stated otherwise, LR gives us *P*(y=1 | X) for each observation we wish to classify. I reserve a more detailed discussion of decision thresholds until a later discussion of ROC curves. For the purposes of the model accuracy here, if *P* is greater than 0.5 -- that is here, if it is more likely than not the customer churns, the customer is predicted to churn, and vice verse when *P* is less than 0.5. 
+I next implement a logistic regression (LR) classifier. The default output from logistic regression is a predicted probability: the probability that any given observation (here: a customer) is "1" (here: churns) given some set of inputs (here: our predictor variables). Stated otherwise, LR gives us *P*(y=1 | X) for each observation we wish to classify. I reserve a more detailed discussion of decision thresholds until a later discussion of ROC curves. For the purposes of the model accuracy here, if *P* is greater than 0.5 -- that is here, if it is more likely than not the customer churns -- the customer is predicted to churn, and vice verse when *P* is less than 0.5. 
 
-I implement the logistic regression as follows. I again use 5-fold cross-validation. Here, I use grid searching to select the optimal value of *C*, the inverse of regularization strength, where smaller values of *C* mean more regularization. In short, because coefficients that are large in magnitude can lead to overfitting, regularization penalizes models large coefficients. This helps combat overfitting the models to our training data.
+I implement the logistic regression as follows. I again use 5-fold cross-validation. Here, I use grid searching to select the optimal value of *C*, the inverse of regularization strength, where smaller values of *C* mean more regularization. In short, because coefficients that are large in magnitude can lead to overfitting, regularization penalizes models with large coefficients. This helps combat overfitting the models to our training data and thus helps ensure our models generalize well to unseen data.
 ```python
 ## Instantiate classifier
 lr = LogisticRegression(random_state = 30)
@@ -214,3 +238,61 @@ LR Test Performance: 0.7917652626597255
 LR AUROC: 0.8340126936435306
 ```
 Our regularization parameter *C* is optimal at 0.1. Again, given that the training and test performance are close to each other, there is little concern of overfitting. The area under the receiver operating characteristics curve (AUROC) for the LR classifier is 0.834... an (expected) improvement over the KNN.
+
+## Model 3: Random Forest
+Random forests are an ensemble method consisting of numerous decision trees. Decision trees start with the target feature of interest and breaks down that feature into subsets by predictors. For instance, in order to break down customer churn, we might draw a tree that splits based on whether the customer is a senior citizen, whether their monthly charge is greater or less than $50, etc. The features used to construct the tree, as well as the cutpoints used to split continuous features, are selected automatically by the learning algorithm. Random forests work because of bagging, wherein subsets of the training data are taken and used to build decision trees. These trees in aggregate create the random forest, which is much more powerful and robust than a single decision tree.
+
+The random forest is implemented as follows. Here, we tune over a large hyperparameter space: `n_estimators` will find the optimal number of decision trees that should be used to construct the random forest, `max_features` controls the number of predictor features available to be used when deciding splits for any given decision tree, `max_depth` controls how deep the tree can grow, `min_samples_split` controls the minimum number of observations required to produce a split in the tree, and `min_samples_leaf` finds the minimum number of observations required to be in a leaf node (leaf nodes are the last nodes at the very end of the tree).
+ ```python
+ ## Instatiate classifier
+rf = RandomForestClassifier(random_state = 30)
+
+## Set up hyperparameter grid for tuning
+rf_param_grid = {'n_estimators': [200, 250, 300, 350, 400, 450, 500],
+                'max_features': ['sqrt', 'log2'],
+                'max_depth': [3, 4, 5, 6, 7],
+                'min_samples_split': [2, 5, 10, 20],
+                'min_samples_leaf': [1, 2, 4]}
+
+## Tune hyperparameters
+rf_cv = RandomizedSearchCV(rf, param_distributions = rf_param_grid, cv = 5, 
+                           random_state = 30, n_iter = 20)
+
+## Fit RF to training data
+rf_cv.fit(X_train, y_train)
+
+## Get info about best hyperparameters
+print("Tuned RF Parameters: {}".format(rf_cv.best_params_))
+print("Best RF Training Score:{}".format(rf_cv.best_score_)) 
+
+## Predict RF on test data
+print("RF Test Performance: {}".format(rf_cv.score(X_test, y_test)))
+
+## Obtain model performance metrics
+rf_pred_prob = rf_cv.predict_proba(X_test)[:,1]
+rf_auroc = roc_auc_score(y_test, rf_pred_prob)
+print("RF AUROC: {}".format(rf_auroc))
+rf_y_pred = rf_cv.predict(X_test)
+print(classification_report(y_test, rf_y_pred))
+
+## OUTPUT 
+Tuned RF Parameters: {'n_estimators': 400, 'min_samples_split': 20, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 7}
+Best RF Training Score:0.8040567951318458
+RF Test Performance: 0.7946048272598202
+RF AUROC: 0.8385643502949445
+```
+Our hyperparameters are tuned using randomized searching. Here, we randomly search through 20 possible combinations of the hyperparameters and select the best performing combination, which we see in the output. Again, there is little to no concern regarding overfitting here. The AUROC of 0.839 is a slight improvement upon the logistic regression.
+
+Additionally, one great feature of random forests is that we can extract feature importances. What predictors mattered most in building the forest? The code below produces an easily interpretable chart. We find that, in the random forest model, the length of a customer's tenure with the company, month-to-month contracts, and monthly charges are the most important features in classifying customer churn.
+```python
+rf_optimal = rf_cv.best_estimator_
+rf_feat_importances = pd.Series(rf_optimal.feature_importances_, index=X_train.columns)
+rf_feat_importances.nlargest(5).plot(kind='barh', color = 'r')
+plt.title('Feature Importances from Random Forest Classifier')
+plt.xlabel('Relative Importance')
+plt.ylabel('Feature Name')
+plt.savefig('model-rf_feature_importances.png', dpi = 200, bbox_inches = 'tight')
+plt.show()
+```
+![Random Forest Feature Importances]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/model-rf_feature_importances.png "Random Forest Feature Importances"){: height="500px" width="700px"}
+
