@@ -24,6 +24,7 @@ _Data Cleaning and Analysis_
 
 _Concluding Remarks and Information_   
 [Model Comparison and Discussion](#model-comparison-and-discussion)
+[Areas for Further Improvement](#areas-for-further-improvement)
 
 ## About the Data
 Data for these analyses come from [IBM](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Telco-Customer-Churn.csv). The target feature is customer churn, which is a binary feature "1" if the customer left the company within the last month and "0" if they did not leave in the last month. We have 20 features at the outset that can be used to predict churn, including: whether the customer was a senior citizen, whether they have a partner or dependents, how long they had been customers of the company, monthly charges and other payment information, and whether or not they had several different products through the company (e.g. phone, internet).
@@ -346,3 +347,48 @@ SGB AUROC: 0.8404496756528291
 ```
 The optimized model stochastic gradient boosted tree model, meaning that a subset of the observations (here, 80% of the training data) are used to fit each tree. Again, there is little concern about overfitting the model here. The AUROC is 0.84, making it the best performing model.
 
+Nicely, we can also examine feature importances from the gradient boosted model. The same 5 features from the Random Forest model are indicated to be the most important features here, albeit in a slightly different rank order.
+
+![Random Forest Feature Importances]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/model-sgb_feature_importances.png "Random Forest Feature Importances"){: height="500px" width="700px"}
+
+## Model Comparison and Discussion
+The four models discussed above are most easily compared examining ROC curves and AUC. ROC curves display the True vs. False Positive Rate of a binary classifier across all decision thresholds (between 0 and 1). In the top right corner is where the decision threshold is 0. In such a case, any observation with a *P*(y = 1) greater than 0 is classified as a "1", and the rest are classified as a "0". Because *every* observation will satisfy the first condition, every observation is classified as a "1". Thus, we correctly classify all true "1"s, but incorrectly classify all true "0"s. The converse is true in the bottom left corner, where the threshold is 1. Between these two extremes lie all possible decision thresholds. The area under each ROC curve is known as AUC, which has been referenced many times throughout the post. The ROC curve for the four models discussed here are calculated and plotted as such:
+```python
+knn_fpr, knn_tpr, knn_thresh = roc_curve(y_test, knn_pred_prob)
+plt.plot(knn_fpr,knn_tpr,label="KNN: auc="+str(round(knn_auroc, 3)),
+         color = 'blue')
+
+lr_fpr, lr_tpr, lr_thresh = roc_curve(y_test, lr_pred_prob)
+plt.plot(lr_fpr,lr_tpr,label="LR: auc="+str(round(lr_auroc, 3)),
+         color = 'red')
+
+rf_fpr, rf_tpr, rf_thresh = roc_curve(y_test, rf_pred_prob)
+plt.plot(rf_fpr,rf_tpr,label="RF: auc="+str(round(rf_auroc, 3)),
+         color = 'green')
+
+sgb_fpr, sgb_tpr, sgb_thresh = roc_curve(y_test, sgb_pred_prob)
+plt.plot(sgb_fpr,sgb_tpr,label="SGB: auc="+str(round(sgb_auroc, 3)),
+         color = 'yellow')
+
+plt.plot([0, 1], [0, 1], color='gray', lw = 1, linestyle='--', 
+         label = 'Random Guess')
+
+plt.legend(loc = 'best', frameon = True, facecolor = 'lightgray')
+plt.title('ROC Curve for Classification Models')
+plt.xlabel('False Positive Rate (1 - specificity)')
+plt.ylabel('True Positive Rate (sensitivity)')
+plt.text(0.85,0.75, 'threshold = 0', fontsize = 8)
+plt.arrow(0.85,0.8, 0.14,0.18, head_width = 0.01)
+plt.text(0.05,0, 'threshold = 1', fontsize = 8)
+plt.arrow(0.05,0, -0.03,0, head_width = 0.01)
+plt.savefig('plot-ROC_4models.png', dpi = 500)
+plt.show()
+```
+![ROC Curves]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/plot-ROC_4models.png "ROC Curves"){: height="500px" width="700px"}
+
+Looking at the areas under the curve, we see that the Stochastic Gradient Boosting (SGB) model performs the best, with an AUC of 0.84; the worst model is the KNN, which has a still-respectable AUC of 0.823. Thus, while there are slight differences in performance across the models, their performance regarding accuracy are generally quite similar. 
+
+Of course, we must also consider computational efficiency. For each model, I computed the computation time using the `time` package. The SGB, though it has the highest AUC, had the longest run time at 111 seconds, whereas the KNN took 98 seconds and the Random Forest took 92. However, the logistic regression was blazingly quick, taking only 1/3 of a second to run. Thus, as a practical matter, the logistic regression model, while *slightly* worse than the RF and SGB models in terms of AUC, grades out as the best model when taking into account computational efficiency.
+
+## Areas for Further Improvement
+There are a few avenues that could be investigated further as potential ways of improving model performance. I implemented many data-side preprocessing methods to get the most out of the data at hand, but ideally more refined measures could be collected. For instance, data that measured age as a continuous measure instead of a binary "Senior Citizen" measure would provide the learning algorithms more granular data to work with. 
