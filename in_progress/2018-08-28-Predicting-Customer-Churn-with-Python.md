@@ -18,11 +18,12 @@ _Introductory Information_
 _Data Cleaning and Analysis_   
 [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)   
 [Model 1: K Nearest Neighbors](#model-1-k-nearest-neighbors)   
-[Model 2: Logistic Regression](#model-2-logistic-regression)   
-[Model 3: Random Forest](#model-3-random-forest)
+[Model 2: Logistic Regression](#model-2-logistic-regression)      
+[Model 3: Random Forest](#model-3-random-forest)   
+[Model 4: Stochastic Gradient Boosting](#model-4-stochastic-gradient-boosting)   
 
 _Concluding Remarks and Information_   
-[Summary of Findings](#summary-of-findings)   
+[Model Comparison and Discussion](#model-comparison-and-discussion)
 
 ## About the Data
 Data for these analyses come from [IBM](https://community.watsonanalytics.com/wp-content/uploads/2015/03/WA_Fn-UseC_-Telco-Customer-Churn.csv). The target feature is customer churn, which is a binary feature "1" if the customer left the company within the last month and "0" if they did not leave in the last month. We have 20 features at the outset that can be used to predict churn, including: whether the customer was a senior citizen, whether they have a partner or dependents, how long they had been customers of the company, monthly charges and other payment information, and whether or not they had several different products through the company (e.g. phone, internet).
@@ -295,4 +296,53 @@ plt.savefig('model-rf_feature_importances.png', dpi = 200, bbox_inches = 'tight'
 plt.show()
 ```
 ![Random Forest Feature Importances]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/model-rf_feature_importances.png "Random Forest Feature Importances"){: height="500px" width="700px"}
+
+## Model 4: Stochastic Gradient Boosting
+Gradient boosting is a state-of-the-art ensemble algorithm that often outperforms its competitors. Simply explained, gradient boosting with decision trees is an iterative process, wherein each tree attempts to correct the errors made the preceding tree. More technically:   
+* Tree 1 is built on data (*X*,*Y*) and produces residuals *r*<sub>1</sub> 
+* Tree 2 is built on data (*X*, *r*<sub>1</sub>) and produces residuals *r*<sub>2</sub> 
+* Tree 2 is built on data (*X*, *r*<sub>2</sub>) and produces residuals *r*<sub>3</sub> , and so on...
+On their own, decision trees are not great predictors. But by using all of these "weak learners" (individual decision trees) in tandem, we get a "strong learner"... a strong predictive model. 
+
+I tune the gradient boosted tree as follows:
+```python
+sgb = GradientBoostingClassifier(random_state = 30)
+
+## Set up hyperparameter grid for tuning
+sgb_param_grid = {'n_estimators' : [200, 300, 400, 500],
+                  'learning_rate' : [0.001, 0.01, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4],
+                  'max_depth' : [3, 4, 5, 6, 7],
+                  'min_samples_split': [2, 5, 10, 20],
+                  'min_weight_fraction_leaf': [0.001, 0.01, 0.05],
+                  'subsample' : [0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                  'max_features': ['sqrt', 'log2']}
+
+## Tune hyperparamters
+sgb_cv = RandomizedSearchCV(sgb, param_distributions = sgb_param_grid, cv = 5, 
+                            random_state = 30, n_iter = 20)
+
+## Fit SGB to training data
+sgb_cv.fit(X_train, y_train)
+
+## Get info about best hyperparameters
+print("Tuned SGB Parameters: {}".format(sgb_cv.best_params_))
+print("Best SGB Training Score:{}".format(sgb_cv.best_score_)) 
+
+## Predict SGB on test data
+print("SGB Test Performance: {}".format(sgb_cv.score(X_test, y_test)))
+
+## Obtain model performance metrics
+sgb_pred_prob = sgb_cv.predict_proba(X_test)[:,1]
+sgb_auroc = roc_auc_score(y_test, sgb_pred_prob)
+print("SGB AUROC: {}".format(sgb_auroc))
+sgb_y_pred = sgb_cv.predict(X_test)
+print(classification_report(y_test, sgb_y_pred))
+
+## OUTPUT
+Tuned SGB Parameters: {'subsample': 0.8, 'n_estimators': 300, 'min_weight_fraction_leaf': 0.01, 'min_samples_split': 10, 'max_features': 'sqrt', 'max_depth': 6, 'learning_rate': 0.01}
+Best SGB Training Score:0.8075050709939148
+SGB Test Performance: 0.795551348793185
+SGB AUROC: 0.8404496756528291
+```
+The optimized model stochastic gradient boosted tree model, meaning that a subset of the observations (here, 80% of the training data) are used to fit each tree. Again, there is little concern about overfitting the model here. The AUROC is 0.84, making it the best performing model.
 
