@@ -10,6 +10,7 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 #### Graduate Coursework
 <table class="tg">
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td> Advanced Research Methods </td>
     <td> Advanced Time Series Analysis </td>
     <td> Bayesian Statistics </td>
     <td> Categorical Data Analysis (logistic/probit, poisson/negative binomial models) </td> 
@@ -17,12 +18,12 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
   <tr style="background-color:WhiteSmoke;color:black;">
     <td> Geographic Information Systems </td>
     <td> Linear Regression </td>
-    <td> Longitudinal/panel Analysis </td>   
+    <td colspan = '2'> Longitudinal/panel Analysis (x2) </td>  
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
     <td> Network Analysis </td>  
     <td> Probability </td>    
-    <td> Research and Survey Design </td>
+    <td colspan = '2'> Research and Survey Design </td>
   </tr>
 </table>
 
