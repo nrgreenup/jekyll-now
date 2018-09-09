@@ -4,7 +4,7 @@ title: About Me
 permalink: /about_me/
 ---
 
-I am a PhD student at Indiana University (living in Boston, MA), National Science Foundation Graduate Research Fellow, and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Python, Stata, and SQL and continue to devote time to advancing my programming abilities (currently more Python).
+I am a PhD student at Indiana University (living in Boston, MA), National Science Foundation Graduate Research Fellow, and an aspiring data scientist. I view data as a gateway to increased productivity and efficiency, and thus am passionate about using data to create actionable insights. Through diverse experiences &mdash; including time spent teaching undergraduate research methods and statistics &mdash; I am skilled in synthesizing statistical information and communicating it in a straightforward, easy-to-understand manner. I have experience programming in R, Python, Stata, and SQL and continue to devote time to advancing my programming abilities (currently more Python and Tableau).
  
 ### Statistical and Methodological Training and Experience
 #### Graduate Coursework
@@ -113,7 +113,7 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
 </table>
 
 #### Teaching
-I taught 2 semesters of an undergraduate research methods and statistics class, which covered survey design and sampling procedures, measures of central tendency and dispersion, standardization (e.g. z-scores), tabular and graphical displays of data using Microsoft Excel, statistical inference (e.g. confidence intervals and p-values), and a cursory introduction to linear regression. My syllabus can be found [here](https://iu.app.box.com/file/283732193861).
+I taught 2 semesters of an undergraduate research methods and statistics class, which covered survey design and sampling procedures, measures of central tendency and dispersion, standardization (e.g. z-scores), tabular and graphical displays of data using Microsoft Excel, statistical inference (e.g. confidence intervals and p-values), and a cursory introduction to linear regression. My syllabus can be found [here](https://www.dropbox.com/s/7zz5ivndcprj73u/s110-SP18-syllabus-V2_no-comments.docx?dl=0).
 
 ### About This Website
 This website was created using Barry Clark's Jekyll implementation [Jekyll Now](https://github.com/barryclark/jekyll-now). 
