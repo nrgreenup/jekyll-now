@@ -53,10 +53,10 @@ SELECT m.hire_year as 'Hire Year',
   FROM 
      (SELECT e.emp_no, hire_year, 
              hire_month, MIN(salary) AS start_sal
-       FROM employees AS e 
-            INNER JOIN salaries AS s 
-            ON e.emp_no = s.emp_no 
-	    GROUP BY e.emp_no) AS m
+        FROM employees AS e 
+             INNER JOIN salaries AS s 
+             ON e.emp_no = s.emp_no 
+	     GROUP BY e.emp_no) AS m
  GROUP BY hire_year, hire_month 
  ORDER BY hire_year, hire_month ;
  ```
@@ -76,9 +76,9 @@ SELECT dept_name,
        INNER JOIN titles AS t 
        ON s.emp_no = t.emp_no     
  WHERE title NOT IN 
-                  (SELECT title 
-                     FROM titles
-                    WHERE title = 'Manager')
+           (SELECT title 
+              FROM titles
+             WHERE title = 'Manager')
  GROUP BY dept_name, title
  ORDER BY avg_salary DESC ;
  ```
@@ -88,17 +88,17 @@ SELECT dept_name,
 SELECT title, 
        COUNT(p.salary) as num_emp_90p
   FROM
-	   (SELECT title, 
-             salary,
-             RANK() OVER (ORDER BY salary DESC) as sal_rank
-        FROM employees AS e 
-             INNER JOIN salaries AS s 
-             ON e.emp_no = s.emp_no 
+      (SELECT title, 
+              salary,
+              RANK() OVER (ORDER BY salary DESC) as sal_rank
+         FROM employees AS e 
+              INNER JOIN salaries AS s 
+              ON e.emp_no = s.emp_no 
             
-             INNER JOIN titles AS t 
-             ON e.emp_no = t.emp_no  
-	     WHERE s.to_date = '9999-01-01' AND   -- '9999-01-01' in the end date indicates current position    
-             t.to_date = '9999-01-01') AS p
+              INNER JOIN titles AS t 
+              ON e.emp_no = t.emp_no  
+	WHERE s.to_date = '9999-01-01' AND   -- '9999-01-01' in the end date indicates current position    
+              t.to_date = '9999-01-01') AS p
  WHERE p.sal_rank <= .1 * 240124   -- 240124 is the total number of current employees
  GROUP BY title 
  ORDER BY num_emp_90p DESC ;
@@ -175,7 +175,7 @@ SELECT e.emp_no,
                    COUNT(de.emp_no) as num_subordinates
               FROM dept_emp AS de, dept_manager AS dm
              WHERE de.dept_no = dm.dept_no AND
-                  (dm.from_date <= de.from_date AND dm.to_date >= de.from_date OR
+                   (dm.from_date <= de.from_date AND dm.to_date >= de.from_date OR
                    dm.from_date BETWEEN de.from_date AND de.to_date)
              GROUP BY dm.emp_no) AS ct 
        ON e.emp_no = ct.emp_no
