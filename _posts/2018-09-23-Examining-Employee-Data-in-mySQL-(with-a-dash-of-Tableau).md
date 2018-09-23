@@ -76,9 +76,9 @@ SELECT dept_name,
        INNER JOIN titles AS t 
        ON s.emp_no = t.emp_no     
  WHERE title NOT IN 
-           (SELECT title 
-              FROM titles
-             WHERE title = 'Manager')
+                 (SELECT title 
+                    FROM titles
+                   WHERE title = 'Manager')
  GROUP BY dept_name, title
  ORDER BY avg_salary DESC ;
  ```
