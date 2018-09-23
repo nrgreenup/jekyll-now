@@ -33,7 +33,7 @@ I use data from a fictional employee database available [here](https://dev.mysql
 A visualization of the schema is available [here](https://dev.mysql.com/doc/employee/en/sakila-structure.html).
 
 ## Average Salary
-```SQL
+```sql
 CREATE INDEX idx_hire_date ON employees (hire_date) ; 
 
  ALTER TABLE employees ADD hire_year INT ;
@@ -58,7 +58,7 @@ SELECT m.hire_year as 'Hire Year',
  ```
 
 ## Non-Managerial Salary
-```SQL
+```sql
 SELECT dept_name, 
        title, 
        AVG(salary) AS avg_salary
@@ -80,7 +80,7 @@ SELECT dept_name,
  ```
 
 ## High Paying Jobs
-```SQL
+```sql
 SELECT title, 
        COUNT(p.salary) as num_emp_90p
   FROM
@@ -101,7 +101,7 @@ SELECT title,
 ```
 
 ## Pay Equality
-```SQL
+```sql
 SELECT dept_name, 
        gender, 
        AVG(salary) as 'Average Salary'
