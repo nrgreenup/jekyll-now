@@ -20,7 +20,10 @@ _Queries_
 [Average Salary of Non-Managers by Department and Position](#non-managerial-salary)   
 [Jobs Held by Those in the Top Salary Decile](#high-paying-jobs)   
 [Departmental Pay Equality](#pay-equality)   
-
+[Youngest and Oldest Employees Ever Hired](#youngest-and-oldest-employees-hired)   
+[Hired or Promoted: How Managers Got the Job](#hired-or-promoted)   
+[Number of Subordinates Per Manager](#number-of-subordinates)   
+[Number and Percentage of Staffers Promoted](#promoted-staffers)
 
 ## About the Data
 I use data from a fictional employee database available [here](https://dev.mysql.com/doc/employee/en/). The database includes six tables:
@@ -29,7 +32,8 @@ I use data from a fictional employee database available [here](https://dev.mysql
  - departments: department number, department name
  - dept_manager: department number, employee number, start date, end date
  - salaries: employee number, salary, start date, end date
- - titles: employee number, title, start date, end date  
+ - titles: employee number, title, start date, end date
+ 
 A visualization of the schema is available [here](https://dev.mysql.com/doc/employee/en/sakila-structure.html).
 
 ## Average Salary
@@ -115,4 +119,89 @@ SELECT dept_name,
        INNER JOIN salaries AS s 
        ON e.emp_no = s.emp_no      
  GROUP BY dept_name, gender WITH ROLLUP ;
+```
+
+## Youngest and Oldest Employees Hired
+```sql
+(SELECT 'Youngest Hire' AS Description, 
+        first_name, 
+        last_name,
+        hire_date, 
+        birth_date, 
+        DATEDIFF(hire_date, birth_date) / 365.25 AS hire_age 
+   FROM employees
+  ORDER BY hire_age
+  LIMIT 1)
+UNION 
+(SELECT 'Oldest Hire' AS Description, 
+        first_name, 
+        last_name,
+        hire_date, 
+        birth_date, 
+        DATEDIFF(hire_date, birth_date) / 365.25 AS hire_age 
+   FROM employees
+  ORDER BY hire_age DESC
+  LIMIT 1) ;
+```
+
+## Hired or Promoted
+```sql
+SELECT dept_name, 
+       first_name, 
+       last_name,
+       CASE WHEN dm.from_date = e.hire_date 
+            THEN 'Hired'
+            ELSE 'Promoted' 
+	    END AS how_attained
+  FROM dept_manager dm 
+       INNER JOIN employees AS e 
+       ON dm.emp_no = e.emp_no 
+       
+       INNER JOIN departments AS d 
+       ON dm.dept_no = d.dept_no
+ ORDER BY dept_name, last_name, how_attained ;
+ ```
+ 
+## Number of Subordinates
+```sql
+SELECT e.emp_no, 
+       e.first_name, 
+       e.last_name,
+       e.hire_date, 
+       ct.num_subordinates
+  FROM employees AS e 
+       INNER JOIN	
+           (SELECT dm.emp_no, 
+                   COUNT(de.emp_no) as num_subordinates
+              FROM dept_emp AS de, dept_manager AS dm
+             WHERE de.dept_no = dm.dept_no AND
+                  (dm.from_date <= de.from_date AND dm.to_date >= de.from_date OR
+                   dm.from_date BETWEEN de.from_date AND de.to_date)
+             GROUP BY dm.emp_no) AS ct 
+       ON e.emp_no = ct.emp_no
+ ORDER BY num_subordinates DESC ;
+ ```
+ 
+ ## Promoted Staffers
+ ```sql
+SELECT DISTINCT title FROM titles ; 
+
+SELECT 'Promoted Staffers' AS description, 
+       COUNT(ps.emp_no) AS num_promoted,
+       (SELECT COUNT(ps.emp_no)) / (SELECT COUNT(ts.emp_no) 
+                                      FROM
+                                          (SELECT t.emp_no,
+                                                  COUNT(title) as num_total
+                                             FROM titles AS t 
+                                                  INNER JOIN employees AS e 
+                                                  ON t.emp_no = e.emp_no
+                                            WHERE title LIKE '%staff%'
+                                            GROUP BY t.emp_no) AS ts) AS pct_promoted
+  FROM
+     (SELECT t.emp_no, 
+             COUNT(title) as num_pos
+        FROM titles AS t 
+       WHERE title LIKE '%staff%'
+       GROUP BY t.emp_no
+      HAVING num_pos >= 2) AS ps ;
 ```
