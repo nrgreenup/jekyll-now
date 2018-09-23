@@ -190,13 +190,11 @@ SELECT 'Promoted Staffers' AS description,
        COUNT(ps.emp_no) AS num_promoted,
        (SELECT COUNT(ps.emp_no)) / (SELECT COUNT(ts.emp_no) 
                                       FROM
-                                          (SELECT t.emp_no,
-                                                  COUNT(title) as num_total
+                                          (SELECT DISTINCT t.emp_no
                                              FROM titles AS t 
                                                   INNER JOIN employees AS e 
                                                   ON t.emp_no = e.emp_no
-                                            WHERE title LIKE '%staff%'
-                                            GROUP BY t.emp_no) AS ts) AS pct_promoted
+                                            WHERE title LIKE '%staff%') AS ts) AS pct_promoted
   FROM
      (SELECT t.emp_no, 
              COUNT(title) as num_pos
