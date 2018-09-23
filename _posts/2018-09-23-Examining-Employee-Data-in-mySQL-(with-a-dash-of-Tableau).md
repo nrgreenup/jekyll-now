@@ -9,18 +9,22 @@ output:
 
 In this post, I discuss a handful of SQL queries on employee data that I've implemented in mySQL Workbench. I wrote these queries from scratch, specifically choosing research questions that would require me to write more complex code that I had relatively less experience working with. 
 
+NOTE: This blog post is a work in progress. I will have more commands (with accompanying discussions) posted on 9/24/2018.
 
 ## Contents
 _Introductory Information_     
 [About the Data](#about-the-data)   
 
 _Data Cleaning and Analysis_   
-[Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)   
-[Model 1: K Nearest Neighbors](#model-1-k-nearest-neighbors)   
-[Model 2: Logistic Regression](#model-2-logistic-regression)      
-[Model 3: Random Forest](#model-3-random-forest)   
-[Model 4: Stochastic Gradient Boosting](#model-4-stochastic-gradient-boosting)   
+
 
 ## About the Data
-I use data from a fictional employee database available [here](https://dev.mysql.com/doc/employee/en/).
+I use data from a fictional employee database available [here](https://dev.mysql.com/doc/employee/en/). The database includes six tables:
+ - employees: employee number, birth date, hire date, first and last name, gender
+ - emp_dept: employee number, department number, starting date, ending date
+ - departments: department number, department name
+ - dept_manager: department number, employee number, start date, end date
+ - salaries: employee number, salary, start date, end date
+ - titles: employee number, title, start date, end date
+A visualization of the schema is available [here](https://dev.mysql.com/doc/employee/en/sakila-structure.html).
 
