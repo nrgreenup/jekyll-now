@@ -182,7 +182,7 @@ SELECT e.emp_no,
  ORDER BY num_subordinates DESC ;
  ```
  
- ## Promoted Staffers
+## Promoted Staffers   
  ```sql
 SELECT DISTINCT title FROM titles ; 
 
