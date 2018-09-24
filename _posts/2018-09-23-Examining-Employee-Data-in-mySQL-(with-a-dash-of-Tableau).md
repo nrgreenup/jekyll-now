@@ -37,6 +37,22 @@ I use data from a fictional employee database available [here](https://dev.mysql
 A visualization of the schema is available [here](https://dev.mysql.com/doc/employee/en/sakila-structure.html).
 
 ## Average Salary
+I first find the average starting salary offered to employees, grouped by hiring month and year. Because I'll be searching through the `hire_date` attribute of the `employees` table here and in later queries, I go ahead and create an index on it to improve performance. I also split the month and year from `hire_date` into two distinct attributes.
+
+The subquery in the `FROM` clause returns a table `m` with the employee number, their month and year of hire, and their minimum salary. Because the following returns a null set, we know that all changes in a salaries are pay raises. No employee received a pay decrease. Thus, the minimum salary for each employee is their starting salary.
+```sql
+SELECT *
+  FROM
+     (SELECT e1.emp_no, s1.salary, RANK() OVER(PARTITION BY e1.emp_no ORDER BY salary) AS rnk
+        FROM employees e1 JOIN salaries s1 ON e1.emp_no = s1.emp_no) AS t1
+       CROSS JOIN
+     (SELECT e2.emp_no,s2.salary, RANK() OVER(PARTITION BY e2.emp_no ORDER BY salary) AS rnk
+        FROM employees e2 JOIN salaries s2 ON e2.emp_no = s2.emp_no ) AS t2      
+ WHERE t1.emp_no = t2.emp_no 
+       AND t2.rnk > t1.rnk 
+       AND t2.salary < t1.salary ;
+ ```
+ From the subquery, we select the number of hires made for each year-month combination, as well as the average starting salary in that month. The results are ordered by hiring year followed by hiring month.
 ```sql
 CREATE INDEX idx_hire_date ON employees (hire_date) ; 
 
@@ -56,10 +72,13 @@ SELECT m.hire_year as 'Hire Year',
         FROM employees AS e 
              INNER JOIN salaries AS s 
              ON e.emp_no = s.emp_no 
-	     GROUP BY e.emp_no) AS m
+       GROUP BY e.emp_no) AS m
  GROUP BY hire_year, hire_month 
  ORDER BY hire_year, hire_month ;
  ```
+Importing these data into Tableau, we can create a useful dashboard highlighting key insights gleaned from the SQL query. Looking at monthly breakdowns, we see that the average monthly number of hires is highest in the spring and summer months and lower in the fall and winter months. We also see that average starting salaries are highest in the months that begin traditional business quarters (January, April, August, and December). We also see that yearly hiring has linearly decreased over time, and with the exception of 2000, average starting salaries by year remained relatively constant.
+
+![Visualizing Hiring and Salary Practices]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/employees-mySQL/salary_hire-MYbreakdown.png "Visualizing Hiring and Salary Practices"){: height="350px" width="700px"}
 
 ## Non-Managerial Salary
 ```sql
