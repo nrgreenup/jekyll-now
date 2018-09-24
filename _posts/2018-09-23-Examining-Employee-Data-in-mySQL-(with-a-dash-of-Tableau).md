@@ -9,7 +9,7 @@ output:
 
 In this post, I discuss a handful of SQL queries on employee data that I've implemented in mySQL Workbench. I wrote these queries from scratch, specifically choosing research questions that would require me to write more complex code that I had relatively less experience working with. 
 
-NOTE: This post is a work in progress. Discussions unpacking and explaining each query, along with one to a few Tableau visualizations related to queries) will be posted by 9/25/2018.
+NOTE: This post is a work in progress. Discussions unpacking and explaining each query, along with one to a few Tableau visualizations related to queries will be posted by 9/25/2018.
 
 ## Contents
 _Introductory Information_     
@@ -104,7 +104,7 @@ SELECT dept_name,
  ```
  A snapshot of the top 10 results shows the following. Perhaps unsurprisingly, salespeople, followed by those in marketing and finance, bring in the highest salaries on average.
  
- ![Salary by Department and Title]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/salary_dept-title.png "Salary by Department and Title"){: height="400px" width="400px"}
+ ![Salary by Department and Title]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/salary_dept-title.png "Salary by Department and Title"){: height="300px" width="500px"}
 
 ## High Paying Jobs
 ```sql
