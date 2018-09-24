@@ -78,7 +78,7 @@ SELECT m.hire_year as 'Hire Year',
  ```
 Importing these data into Tableau, we can create a useful dashboard highlighting key insights gleaned from the SQL query. Looking at monthly breakdowns, we see that the average monthly number of hires is highest in the spring and summer months and lower in the fall and winter months. We also see that average starting salaries are highest in the months that begin traditional business quarters (January, April, August, and December). We also see that yearly hiring has linearly decreased over time, and with the exception of 2000, average starting salaries by year remained relatively constant.
 
-![Visualizing Hiring and Salary Practices]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}images/employees-mySQL/salary_hire-MYbreakdown.png "Visualizing Hiring and Salary Practices"){: height="350px" width="700px"}
+![Visualizing Hiring and Salary Practices]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/salary_hire-MYbreakdown.png "Visualizing Hiring and Salary Practices"){: height="350px" width="700px"}
 
 ## Non-Managerial Salary
 ```sql
