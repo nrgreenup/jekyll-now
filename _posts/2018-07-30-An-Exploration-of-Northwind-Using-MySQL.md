@@ -307,4 +307,4 @@ INSERT INTO orderDET VALUES(99999, 99999, 99999, 99999, 0);
 DELETE FROM orders WHERE OrderID = 99999;
 ```
 
-*Updated September 26, 2018*
+*Updated on September 26, 2018*
