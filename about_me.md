@@ -36,34 +36,36 @@ I am a PhD student at Indiana University (living in Boston, MA), National Scienc
   <tr style="background-color:WhiteSmoke;color:black;">
     <td class="tg-us36"> ARIMA Modeling<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> Cleaning Data<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
-    <td class="tg-us36"> Data Manipulation with DPLYR<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
+    <td class="tg-us36"> Cluster Analysis<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-us36"> Data Manipulation with DPLYR<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup> </td>
     <td class="tg-us36"> ggplot2: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-us36"> ggplot2: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-us36"> Forecasting<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data: Part 1<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Importing Data: Part 2<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Importing & Cleaning Data: Case Studies<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intermediate R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Intermediate R: Practice<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Introduction to R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l"> Introduction to R<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Introduction to Time Series<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
     <td class="tg-yw4l"> Manipulating Time Series with xts and zoo<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Marketing Analytics<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
   <tr style="background-color:WhiteSmoke;color:black;">
- <td class="tg-yw4l"> Multiple and Logistic Regression<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Supervised Learning: Classification<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
-    <td class="tg-yw4l"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+   <td class="tg-yw4l"> Marketing Analytics<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+   <td class="tg-yw4l"> Multiple and Logistic Regression<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+   <td class="tg-yw4l"> Supervised Learning: Classification<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
   </tr>
- 
+  <tr style="background-color:WhiteSmoke;color:black;">
+    <td class="tg-yw4l" colspan = "3"> Writing Functions<sup style="font-size: 8px; line-height: 0; vertical-align: 7px">DC</sup></td>
+  </tr> 
   <tr style="background-color:Silver;color:black;"> 
     <th class="tg-yw4l" colspan="3"> Python </th>
   </tr>
