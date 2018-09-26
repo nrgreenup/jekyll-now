@@ -9,7 +9,7 @@ output:
 
 In this post, I discuss a handful of SQL queries on employee data that I've implemented in mySQL Workbench. I wrote these queries from scratch, specifically choosing research questions that would require me to write more complex code that I had relatively less experience working with. 
 
-NOTE: This post is a work in progress. Discussions unpacking and explaining each query, along with one to a few Tableau visualizations related to queries will be posted by 9/26/2018.
+NOTE: This post is a work in progress. Discussions unpacking and explaining each query, along with one to a few Tableau visualizations related to queries will be posted soon.
 
 ## Contents
 _Introductory Information_     
