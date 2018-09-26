@@ -34,7 +34,7 @@ Before jumping into any more complicated queries, it useful to get an initial pi
 
 The preliminary analyses give a good overview of the data. There are 77 distinct products and 9 product categories. There are 91 customers who have collectively placed 830 complete orders. In some of those orders, customers purchased multiple products; there are 2155 product orders. Lastly, there are 9 employees, 5 of whom operate in the United States and 4 in the United Kingdom. With this basic information in hand, I dive into some analyses.
 ```sql
-ALTER TABLE `northwind`.`order details` 
+ ALTER TABLE `northwind`.`order details` 
 RENAME TO  `northwind`.`orderDET`;
 
 SELECT * FROM categories; 
@@ -58,7 +58,7 @@ SELECT LastName,
        FirstName, 
        COUNT(O.OrderID) AS NumOrders, 
        SUM(UnitPrice*Quantity) AS SalesGross
-FROM   employees AS E 
+  FROM employees AS E 
        INNER JOIN orders AS O 
        ON (E.EmployeeID = O.EmployeeID) 
        
@@ -72,16 +72,16 @@ FROM   employees AS E
 
 We see that Margaret, Janet, and Nancy have made the most sales, while Steven rounds out the table as the lowest performing salesperson. Of course, we may be interested in net sales that take into account, for instance, discounts customers may have received on their purchase. Because this information is also available in the `orderDET` relation, a minor change to the `SELECT` statement takes care of this for us. In the output screenshotted below, there is little change in the rank ordering of employees, with only Laura and Robert swapping ranks, but the value of the sales expectedly decreases a bit.
 ```sql
-SELECT   LastName, 
-	 FirstName, 
-	 COUNT(O.OrderID) AS NumOrders, 
-         SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
-FROM     employees AS E 
-	 INNER JOIN orders AS O 
-	 ON (E.EmployeeID = O.EmployeeID) 
+SELECT LastName, 
+       FirstName, 
+       COUNT(O.OrderID) AS NumOrders, 
+       SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
+  FROM employees AS E 
+       INNER JOIN orders AS O 
+       ON (E.EmployeeID = O.EmployeeID) 
          
-	 INNER JOIN orderDET AS D 
-	 ON (O.OrderID = D.OrderID)
+       INNER JOIN orderDET AS D 
+       ON (O.OrderID = D.OrderID)
  GROUP BY E.EmployeeID
  ORDER BY SalesNet DESC;
 ```
@@ -90,7 +90,7 @@ FROM     employees AS E
 
 Lastly, we may be interested in some aggregate measure of employee performance. Though sociodemographic data is sparse in the `employees` relation, there is information about employees' date of birth. Given this, I decided to investigate whether there is a difference in sales performance between "younger" and "older" employees. To do so, I decided to compare the sales of all employees born before 1960 with those born during or after 1960. First, I created an indicator variable based on the recorded date of birth:
 ```sql
-ALTER TABLE employees ADD birth1960 TEXT;
+ ALTER TABLE employees ADD birth1960 TEXT;
 UPDATE employees SET birth1960 = 'pre' WHERE EmployeeID <> 0 AND BirthDate < '1960-01-01 00:00:00';
 UPDATE employees SET birth1960 = 'post' WHERE EmployeeID <> 0 AND BirthDate >= '1960-01-01 00:00:00';
 ```
@@ -99,12 +99,12 @@ Next, a query using aggregation seen in prior queries gives us what we want. App
 SELECT birth1960, 
        COUNT(O.OrderID) AS NumOrders, 
        SUM(UnitPrice*(1-Discount)*Quantity) AS SalesNet
-FROM employees AS E 
-     INNER JOIN orders AS O 
-     ON (E.EmployeeID = O.EmployeeID) 
+  FROM employees AS E 
+       INNER JOIN orders AS O 
+       ON (E.EmployeeID = O.EmployeeID) 
      
-     INNER JOIN orderDET AS D 
-     ON (O.OrderID = D.OrderID)
+       INNER JOIN orderDET AS D 
+       ON (O.OrderID = D.OrderID)
  GROUP BY E.birth1960
  ORDER BY SalesNet DESC;
 ```
@@ -140,8 +140,8 @@ SELECT C.CustomerID, C.CompanyName, O.OrderID, O.OrderDate
 I next turn to information in the customers table that could potentially decrease operational costs significantly for Northwind. Seeing that Northwind is a global operation, it would be desirable to reduce shipping costs as much as possible. For instance, we may want to ensure that all orders shipped to the same area are shipped together on the same vessel. Thus, knowing which customers are located near one another could help significantly reduce shipping costs for Northwind. Using a series of self joins, we find all pairs of 5 companies that are located in the same city. Results show that there are 7 combinations of 5-customer pairs that are located within the same city.
 ```sql
 SELECT C1.City, C1.CompanyName, C2.CompanyName, C3.CompanyName, C4.CompanyName, C5.CompanyName
- FROM  customers AS C1, customers AS C2, customers AS C3, customers AS C4, customers AS C5
-WHERE  C1.City = C2.City AND C2.City = C3.City AND C3.City = C4.City AND C4.City = C5.City 
+  FROM customers AS C1, customers AS C2, customers AS C3, customers AS C4, customers AS C5
+ WHERE C1.City = C2.City AND C2.City = C3.City AND C3.City = C4.City AND C4.City = C5.City 
        AND C1.CompanyName < C2.CompanyName AND C2.CompanyName < C3.CompanyName 
        AND C3.CompanyName < C4.CompanyName AND C4.CompanyName < C5.CompanyName;
 ```
