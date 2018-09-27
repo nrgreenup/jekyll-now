@@ -9,8 +9,6 @@ output:
 
 In this post, I discuss a handful of SQL queries on employee data that I've implemented in mySQL Workbench. I wrote these queries from scratch, specifically choosing research questions that would require me to write more complex code that I had relatively less experience working with. 
 
-NOTE: This post is a work in progress. Discussions unpacking and explaining each query, along with one to a few Tableau visualizations related to queries will be posted soon.
-
 ## Contents
 _Introductory Information_     
 [About the Data](#about-the-data)   
@@ -236,3 +234,5 @@ SELECT 'Promoted Staffers' AS description,
       HAVING num_pos >= 2) AS ps ;
 ```
 ![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="200px"} 
+
+*Updated September 27, 2018*
