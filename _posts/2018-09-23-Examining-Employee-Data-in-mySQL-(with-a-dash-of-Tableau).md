@@ -52,7 +52,7 @@ SELECT *
        AND t2.rnk > t1.rnk 
        AND t2.salary < t1.salary ;
  ```
- From the subquery, we select the number of hires made for each year-month combination, as well as the average starting salary in that month. The results are ordered by hiring year followed by hiring month.
+From the subquery, we select the number of hires made for each year-month combination, as well as the average starting salary in that month. The results are ordered by hiring year followed by hiring month.
 ```sql
 CREATE INDEX idx_hire_date ON employees (hire_date) ; 
 
@@ -102,11 +102,12 @@ SELECT dept_name,
  GROUP BY dept_name, title
  ORDER BY avg_salary DESC ;
  ```
- A snapshot of the top 10 results shows the following. Perhaps unsurprisingly, salespeople, followed by those in marketing and finance, bring in the highest salaries on average.
+A snapshot of the top 10 results shows the following. Perhaps unsurprisingly, salespeople, followed by those in marketing and finance, bring in the highest salaries on average.
  
  ![Salary by Department and Title]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/salary_dept-title.png "Salary by Department and Title"){: height="300px" width="500px"}
 
 ## High Paying Jobs
+The following query returns a count of the number of people in the top 10% of salary, by title. We see that the top decile is made up largely of senior staffers.
 ```sql
 SELECT title, 
        COUNT(p.salary) as num_emp_90p
@@ -126,8 +127,10 @@ SELECT title,
  GROUP BY title 
  ORDER BY num_emp_90p DESC ;
 ```
-
+ ![Jobs Held by Top 10% in Salary]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/jobs_top10sal.png "Jobs Held by Top 10% in Salary"){: height="300px" width="500px"}
+ 
 ## Pay Equality
+Next, I look at departmental pay inequality by gender. Using `WITH ROLLUP` provides the mean average salary for men and women in each department, combined with the average salary for both genders in the department. I find that there is little to no pay gap by gender within departments.
 ```sql
 SELECT dept_name, 
        gender, 
@@ -143,7 +146,8 @@ SELECT dept_name,
        ON e.emp_no = s.emp_no      
  GROUP BY dept_name, gender WITH ROLLUP ;
 ```
-
+ ![Jobs Held by Top 10% in Salary]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/pay_inequality-gender.png "Jobs Held by Top 10% in Salary"){: height="300px" width="500px"}
+ 
 ## Youngest and Oldest Employees Hired
 ```sql
 (SELECT 'Youngest Hire' AS Description, 
