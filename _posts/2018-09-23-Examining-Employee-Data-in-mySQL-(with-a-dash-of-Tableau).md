@@ -235,4 +235,4 @@ SELECT 'Promoted Staffers' AS description,
 ```
 ![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="300px"} 
 
-*Updated September 27, 2018*
+*Updated on September 27, 2018*
