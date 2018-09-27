@@ -127,7 +127,7 @@ SELECT title,
  GROUP BY title 
  ORDER BY num_emp_90p DESC ;
 ```
- ![Jobs Held by Top 10% in Salary]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/jobs_top10sal.png "Jobs Held by Top 10% in Salary"){: height="300px" width="500px"}
+ ![Jobs Held by Top 10% in Salary]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/jobs_top10sal.png "Jobs Held by Top 10% in Salary"){: height="200px" width="350px"}
  
 ## Pay Equality
 Next, I look at departmental pay inequality by gender. Using `WITH ROLLUP` provides the mean average salary for men and women in each department, combined with the average salary for both genders in the department. I find that there is little to no pay gap by gender within departments.
@@ -149,6 +149,7 @@ SELECT dept_name,
  ![Jobs Held by Top 10% in Salary]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/pay_inequality-gender.png "Jobs Held by Top 10% in Salary"){: height="300px" width="500px"}
  
 ## Youngest and Oldest Employees Hired
+I also find the oldest and youngest employees ever hired by the company. The following query finds that the youngest employee ever hired was 20 years old, while the oldest employee was 47 years old.
 ```sql
 (SELECT 'Youngest Hire' AS Description, 
         first_name, 
@@ -170,7 +171,7 @@ UNION
   ORDER BY hire_age DESC
   LIMIT 1) ;
 ```
-
+Next, I was interested in investigating promotional opportunities available to employees. The following returns a list of all managers and information whether they were hired as a manager or promoted to the position. We find that most managers achieve the position through promotion.
 ## Hired or Promoted
 ```sql
 SELECT dept_name, 
@@ -188,8 +189,10 @@ SELECT dept_name,
        ON dm.dept_no = d.dept_no
  ORDER BY dept_name, last_name, how_attained ;
  ```
- 
+![Managers: Hired and Promoted]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/managers_hired-promoted.png "Managers: Hired and Promoted"){: height="300px" width="500px"}
+
 ## Number of Subordinates
+I also examine the number of subordiantes each manager has hired. 
 ```sql
 SELECT e.emp_no, 
        e.first_name, 
@@ -208,8 +211,10 @@ SELECT e.emp_no,
        ON e.emp_no = ct.emp_no
  ORDER BY num_subordinates DESC ;
  ```
+![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/managers_num-subordinates.png "Managers: Number of Subordinates"){: height="300px" width="500px"} 
  
-## Promoted Staffers   
+## Promoted Staffers 
+Lastly, I find that around half of the individuals hired as staffers are eventually promoted to senior positions:
  ```sql
 SELECT DISTINCT title FROM titles ; 
 
@@ -230,3 +235,4 @@ SELECT 'Promoted Staffers' AS description,
        GROUP BY t.emp_no
       HAVING num_pos >= 2) AS ps ;
 ```
+![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="300px" width="500px"} 
