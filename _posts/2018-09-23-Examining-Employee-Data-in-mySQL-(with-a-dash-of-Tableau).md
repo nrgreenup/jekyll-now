@@ -233,6 +233,6 @@ SELECT 'Promoted Staffers' AS description,
        GROUP BY t.emp_no
       HAVING num_pos >= 2) AS ps ;
 ```
-![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="200px"} 
+![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="300px"} 
 
 *Updated September 27, 2018*
