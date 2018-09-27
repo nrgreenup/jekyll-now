@@ -171,8 +171,8 @@ UNION
   ORDER BY hire_age DESC
   LIMIT 1) ;
 ```
-Next, I was interested in investigating promotional opportunities available to employees. The following returns a list of all managers and information whether they were hired as a manager or promoted to the position. We find that most managers achieve the position through promotion.
 ## Hired or Promoted
+Next, I was interested in investigating promotional opportunities available to employees. The following returns a list of all managers and information whether they were hired as a manager or promoted to the position. We find that most managers achieve the position through promotion.
 ```sql
 SELECT dept_name, 
        first_name, 
@@ -192,7 +192,7 @@ SELECT dept_name,
 ![Managers: Hired and Promoted]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/managers_hired-promoted.png "Managers: Hired and Promoted"){: height="300px" width="500px"}
 
 ## Number of Subordinates
-I also examine the number of subordiantes each manager has hired. 
+I also examine the number of subordiantes each manager has hired. We see a wide range, with the top manager having managed over 80,000 employees.
 ```sql
 SELECT e.emp_no, 
        e.first_name, 
@@ -235,4 +235,4 @@ SELECT 'Promoted Staffers' AS description,
        GROUP BY t.emp_no
       HAVING num_pos >= 2) AS ps ;
 ```
-![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="300px" width="500px"} 
+![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="200px"} 
