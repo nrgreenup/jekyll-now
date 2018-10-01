@@ -185,7 +185,7 @@ I next use an ARIMA (ARIMA) forecast to see if I can improve upon the HW forecas
    - (p,d,q) is the non-seasonal part of the model and (P,D,Q)m is the seasonal part of the model 
    - p and P denote the non-seasonal and seasonal autoregressive parameters of the model, where past values of the series (Y<sub>t-h</sub>) are used as predictors of the current value of the series (Y<sub>t</sub>)
    - d and D denote the number of non-seasonal and seasonal differences required to make the series stationary
-   - q and Q denote the moving average component of the model, where past error values are used as predictors of the current values of the series
+   - q and Q denote the moving average components of the model, where past error values are used as predictors of the current values of the series
    - m denotes the seasonal period
 
 I implement the ARIMA using the `auto.arima` function. This function automatically selects the best fitting ARIMA model by selecting the number of differences required using KPSS unit root tests and then minimizing the AICc.
