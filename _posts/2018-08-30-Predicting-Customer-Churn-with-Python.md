@@ -299,11 +299,7 @@ plt.show()
 ![Random Forest Feature Importances]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/customer-churn/model-rf_feature_importances.png "Random Forest Feature Importances"){: height="500px" width="700px"}
 
 ## Model 4: Stochastic Gradient Boosting
-Gradient boosting is a state-of-the-art ensemble algorithm that often outperforms its competitors. Simply explained, gradient boosting with decision trees is an iterative process, wherein each tree attempts to correct the errors made the preceding tree. More technically:   
-* Tree 1 is built on data (*X*,*Y*) and produces residuals *r*<sub>1</sub> 
-* Tree 2 is built on data (*X*, *r*<sub>1</sub>) and produces residuals *r*<sub>2</sub> 
-* Tree 2 is built on data (*X*, *r*<sub>2</sub>) and produces residuals *r*<sub>3</sub> , and so on...
-On their own, decision trees are not great predictors. But by using all of these "weak learners" (individual decision trees) in tandem, we get a "strong learner"... a strong predictive model. 
+Gradient boosting is a state-of-the-art ensemble algorithm that often outperforms its competitors. Simply explained, gradient boosting with decision trees is an iterative process, wherein each tree attempts to correct the errors made the preceding tree. Subsequent trees give more weight to observations that are more difficult to predict. On their own, decision trees are not great predictors. But by using all of these "weak learners" (individual decision trees) in tandem, we get a "strong learner"... a strong predictive model. 
 
 I tune the gradient boosted tree as follows:
 ```python
@@ -396,3 +392,5 @@ There are a few avenues that could be investigated further as potential ways of 
 Second, more exhaustative hyperparameter tuning could improve model performance to an extent. Of course, expanding the hyperparameter space that we use for `GridSearchCV` will greatly increase the time required to compute the optimized hyperparameters. Additionally, searching over a larger hyperparameter space does not guarantee that `RandomizedSearchCV` will settle on the most optimal hyperparameters. If our goal is maximum accuracy regardless of computational intensity, a much more thorough hyperparameter optimization process would likely increase the classification accuracy of the models to some extent. However, the model performances observed using the hyperparameter tuning methods discussed above strike a balance between accuracy and efficiency.
 
 If you've made it this far, thank you for reading about my work! 
+
+*Updated October 1, 2018*
