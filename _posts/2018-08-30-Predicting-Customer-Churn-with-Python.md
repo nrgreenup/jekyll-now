@@ -341,7 +341,7 @@ Best SGB Training Score:0.8075050709939148
 SGB Test Performance: 0.795551348793185
 SGB AUROC: 0.8404496756528291
 ```
-The optimized model stochastic gradient boosted tree model, meaning that a subset of the observations (here, 80% of the training data) are used to fit each tree. Again, there is little concern about overfitting the model here. The AUROC is 0.84, making it the best performing model.
+The optimized model is a stochastic gradient boosted tree model, meaning that a subset of the observations (here, 80% of the training data) are used to fit each tree. Again, there is little concern about overfitting the model here. The AUROC is 0.84, making it the best performing model.
 
 Nicely, we can also examine feature importances from the gradient boosted model. The same 5 features from the Random Forest model are indicated to be the most important features here, albeit in a slightly different rank order.
 
