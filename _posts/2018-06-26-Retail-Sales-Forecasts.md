@@ -181,7 +181,7 @@ Based solely on the forecast plot, it is immediately apparent that the HW foreca
 ![HW Forecast]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/sales-forecast/plot-hw_forecast.png "Holt-Winters Forecast"){: height="400px" width="400px"}
 
 ## ARIMA Forecast
-I next use an ARIMA (ARIMA) forecast to see if I can improve upon the HW forecast. SARIMA models are notated SARIMA(p,d,q)(P,D,Q)m, where:   
+I next use an ARIMA (ARIMA) forecast to see if I can improve upon the HW forecast. ARIMA models with seasonality (sometimes referred to as SARIMA) are notated ARIMA(p,d,q)(P,D,Q)m, where:   
    - (p,d,q) is the non-seasonal part of the model and (P,D,Q)m is the seasonal part of the model 
    - p and P denote the non-seasonal and seasonal autoregressive parameters of the model, where past values of the series (Y<sub>t-h</sub>) are used as predictors of the current value of the series (Y<sub>t</sub>)
    - d and D denote the number of non-seasonal and seasonal differences required to make the series stationary
@@ -358,3 +358,5 @@ ggsave("plot-tbats_forecast.png")
 ### Forecast Accuracy
 accuracy(tbatsFCAST, test[,"SALES"])
 ```
+
+*Updated October 1, 2018*
