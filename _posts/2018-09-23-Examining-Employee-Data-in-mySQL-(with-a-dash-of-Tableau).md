@@ -74,7 +74,7 @@ SELECT m.hire_year as 'Hire Year',
  GROUP BY hire_year, hire_month 
  ORDER BY hire_year, hire_month ;
  ```
-Importing these data into Tableau, we can create a useful dashboard highlighting key insights gleaned from the SQL query. Looking at monthly breakdowns, we see that the average monthly number of hires is highest in the spring and summer months and lower in the fall and winter months. We also see that average starting salaries are highest in the months that begin traditional business quarters (January, April, August, and December). We also see that yearly hiring has linearly decreased over time, and with the exception of 2000, average starting salaries by year remained relatively constant. However, it should be noted that I have truncated y-axes on several the charts to highlight seasonal differences. In doing so, the differences appear larger visually than they are in reality. Nevertheless, with this in mind, we see some clear monthly seasonility in hiring practices.
+Importing these data into Tableau, we can create a useful dashboard highlighting key insights gleaned from the SQL query. Looking at monthly breakdowns, we see that the average monthly number of hires is highest in the spring and summer months and lower in the fall and winter months. We also see that average starting salaries fluctuate quite noticeably throughout the year. We also see that yearly hiring has linearly decreased over time, and with the exception of 2000, average starting salaries by year remained relatively constant. However, it should be noted that I have truncated y-axes on several the charts to highlight seasonal differences. In doing so, the differences appear larger visually than they are in reality. Nevertheless, with this in mind, we see some clear monthly seasonility in hiring practices.
 
 ![Visualizing Hiring and Salary Practices]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/salary_hire-MYbreakdown.png "Visualizing Hiring and Salary Practices"){: height="450px" width="700px"}
 
@@ -235,4 +235,4 @@ SELECT 'Promoted Staffers' AS description,
 ```
 ![Managers: Number of Subordinates]({{ https://github.com/nrgreenup/nrgreenup.github.io/blob/master/ }}/images/employees-mySQL/promotions_num-per-staffers.png "Managers: Number of Subordinates"){: height="100px" width="300px"} 
 
-*Updated on September 27, 2018*
+*Updated on October 1, 2018*
